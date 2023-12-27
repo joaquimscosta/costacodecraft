@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
+import "purecss/build/pure.css";
 import "./index.css";
 import App from "./App";
 
