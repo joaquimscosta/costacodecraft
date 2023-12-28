@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/joaquimcosta/costacodecraft-ui:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -44,4 +44,4 @@ jobs:
         app-name: 'costacodecraft'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_efc3ee30ad58405cb47c4fc93d894f73 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/joaquimcosta/costacodecraft-ui:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}'
