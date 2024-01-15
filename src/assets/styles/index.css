@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  border-top: 10px solid #000;
+  /* color: #444; */
+  margin: 0;
+  font-family: sans-serif;
+  line-height: 1.75;
+}
+p {
+  font-size: 22px;
+  margin-bottom: 1.5em;
+}
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.content {
+  grid-column: span 3;
+  align-self: end;
+  justify-self: start;
+}
+.header {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.footer {
+  grid-column: 1/-1;
+  align-self: end;
+  justify-self: center;
+}
+
+.header h1 {
+  font-size: 42px;
+}
+/* Navbar */
+.navbar {
+  font-size: 18px;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar a:link {
+  font-size: 18px;
+  text-decoration: none;
+  color: #000;
+}
+.navbar a:visited,
+.navbar a:hover,
+.navbar a:active {
+  color: #000;
+}
+
+.copyright {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/*Social Media*/
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.social-media a:link {
+  text-decoration: none;
+  /* color: inherit; */
+}
+.social-media a:visited,
+.social-media a:hover,
+.social-media a:active {
+  /* color: inherit; */
+}
+
+/*Greeting*/
+.greeting {
+  font-size: 20px;
+  line-height: 2;
+}
+.greeting h2 {
+  font-size: 48px;
+}
+
+.greeting h3 {
+  font-size: 24px;
+}
+.greeting.read-more {
+  font-size: 20px;
+}
+
+/*About Me*/
+.certificates {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.certificates img {
+  width: 200px;
+}
