@@ -22,22 +22,20 @@ function AboutMe() {
       </p>
       <Skills />
 
-      <p>
-        <ul style={{ marginLeft: "20px" }}>
-          <li>
-            Connect with me on LinkedIn:
-            <a href="https://www.linkedin.com/in/joaquimscosta/">
-              https://www.linkedin.com/in/joaquimscosta/
-            </a>
-          </li>
-          <li>
-            See what I have been working on:
-            <a href="https://github.com/joaquimscosta">
-              https://github.com/joaquimscosta
-            </a>
-          </li>
-        </ul>
-      </p>
+      <ul style={{ marginLeft: "20px" }}>
+        <li>
+          Connect with me on LinkedIn:
+          <a href="https://www.linkedin.com/in/joaquimscosta/">
+            https://www.linkedin.com/in/joaquimscosta/
+          </a>
+        </li>
+        <li>
+          See what I have been working on:
+          <a href="https://github.com/joaquimscosta">
+            https://github.com/joaquimscosta
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }

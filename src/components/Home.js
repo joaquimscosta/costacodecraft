@@ -1,4 +1,4 @@
-function Greeting() {
+function Home() {
   return (
     <div className="greeting">
       <h2>Hi, I am Joaquim</h2>
@@ -10,4 +10,4 @@ function Greeting() {
   );
 }
 
-export default Greeting;
+export default Home;
