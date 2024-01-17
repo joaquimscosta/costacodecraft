@@ -1,5 +1,6 @@
-import az204 from "../assets/images/azure-developer-associate-600x600.png";
-import az400 from "../assets/images/azure-devops-engineer-expert-600x600.png";
+import Certificate from "./Certificates";
+import Skills from "./Skills";
+
 function AboutMe() {
   return (
     <div>
@@ -10,14 +11,7 @@ function AboutMe() {
         "Azure DevOps engineer expert", and "Azure developers associate".
         Currently, I have been upskilling to become a Pythonista.
       </p>
-      <p className="certificates">
-        <a href="https://learn.microsoft.com/api/credentials/share/en-us/41012948/33F48BE03911C07C?sharingId=117A2EE4C23A5BEA">
-          <img src={az204} alt="Azure Developer Certificate" />
-        </a>
-        <a href="https://learn.microsoft.com/api/credentials/share/en-us/41012948/738E6B3882D9F840?sharingId=117A2EE4C23A5BEA">
-          <img src={az400} alt="Azure DevOps Engineer Certificate" />
-        </a>
-      </p>
+      <Certificate />
       <p>
         My primary interests include DevOps, (particularly around implementation
         and transformation of teams to use DevOps effectively) and developing
@@ -26,7 +20,9 @@ function AboutMe() {
         soccer (<button>Futebol</button>), and dancing (<button>Kizomba</button>
         ).
       </p>
-      {/* <p>
+      <Skills />
+
+      <p>
         <ul style={{ marginLeft: "20px" }}>
           <li>
             Connect with me on LinkedIn:
@@ -41,7 +37,7 @@ function AboutMe() {
             </a>
           </li>
         </ul>
-      </p> */}
+      </p>
     </div>
   );
 }

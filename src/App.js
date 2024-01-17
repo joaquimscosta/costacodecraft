@@ -5,7 +5,7 @@ import AboutMe from "./components/AboutMe";
 
 function App() {
   return (
-    <div className="container">
+    <div className="app container">
       <Header />
       <Content content={AboutMe} />
       <Footer />
