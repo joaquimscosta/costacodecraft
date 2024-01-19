@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 function Navbar() {
+  const handleActive = (match, location) => {
+    console.log(match, location);
+  };
   return (
     <nav className="navbar">
       <NavLink to="/">Home</NavLink>

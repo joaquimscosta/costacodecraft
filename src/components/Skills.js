@@ -38,7 +38,11 @@ function Skills() {
     })
     .map((skill) => {
       return (
-        <span className="skills-item" style={{ backgroundColor: skill.color }}>
+        <span
+          className="skills-item"
+          key={skill.name}
+          style={{ backgroundColor: skill.color }}
+        >
           {skill.name}
         </span>
       );
