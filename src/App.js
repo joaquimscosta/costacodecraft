@@ -5,22 +5,21 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Content from "./components/Content";
-import Home from "./components/Home";
-import AboutMe from "./components/AboutMe";
-import Blog from "./components/Blog";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
+import Home from "./pages/Home";
+import AboutMe from "./pages/AboutMe";
+import Blog from "./pages/Blog";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
 import RootLayout from "./layouts/RootLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Content content={Home} />} />
-      <Route path="blog" element={<Content content={Blog} />} />
-      <Route path="about" element={<Content content={AboutMe} />} />
-      <Route path="projects" element={<Content content={Projects} />} />
-      <Route path="contact" element={<Content content={Contact} />} />
+      <Route index element={<Home />} />
+      <Route path="blog" element={<Blog />} />
+      <Route path="about" element={<AboutMe />} />
+      <Route path="projects" element={<Projects />} />
+      <Route path="contact" element={<Contact />} />
     </Route>
   )
 );

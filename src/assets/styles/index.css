@@ -37,7 +37,9 @@ body {
   line-height: 1.75;
   background-color: var(--bg-100);
 }
-p, ul, ol{
+p,
+ul,
+ol {
   font-size: 22px;
   margin-bottom: 1.5em;
 }
@@ -168,6 +170,14 @@ a:active {
   background: var(--text-100);
   color: var(--primary-100);
   border-radius: 5px;
+}
+.avatar {
+  justify-self: center;
+  text-align: center;
+}
+.avatar img {
+  width: 300px;
+  border-radius: 50%;
 }
 /*PROJECT*/
 /*CONTACT*/
