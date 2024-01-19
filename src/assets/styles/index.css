@@ -1,4 +1,5 @@
 :root {
+  --font-family: Sans-serif;
   /* https://aicolors.co/ */
   --primary-100: #d4eaf7;
   --primary-200: #b6ccd8;
@@ -30,12 +31,10 @@
   box-sizing: border-box;
   color: var(--text-100);
 }
-body {
-  border-top: 10px solid var(--accent-200);
-  margin: 0;
-  font-family: sans-serif;
-  line-height: 1.75;
-  background-color: var(--bg-100);
+
+img {
+  max-width: 100%;
+  display: block;
 }
 p,
 ul,
@@ -53,9 +52,17 @@ button {
   cursor: pointer;
 }
 
+body {
+  border-top: 10px solid var(--accent-200);
+  margin: 0;
+  font-family: var(--font-family);
+  line-height: 1.75;
+  background-color: var(--bg-100);
+}
+
 .container {
-  width: 1440px;
-  margin: 0 auto;
+  max-width: 1440px;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
