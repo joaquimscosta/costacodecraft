@@ -58,6 +58,7 @@ body {
   font-family: var(--font-family);
   line-height: 1.75;
   background-color: var(--bg-100);
+  /* font-size: 1.25rem; */
 }
 
 .container {
@@ -89,6 +90,7 @@ a:active {
 .header {
   grid-column: 1/-1;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
@@ -169,7 +171,7 @@ a:active {
   gap: 20px;
 }
 .certificates img {
-  width: 200px;
+  max-width: 200px;
 }
 
 .skills-list {
