@@ -9,14 +9,14 @@ function Certificate() {
       url: "https://learn.microsoft.com/api/credentials/share/en-us/41012948/33F48BE03911C07C?sharingId=117A2EE4C23A5BEA",
     },
     {
-      name: "Azure Developer Certificate",
+      name: "Azure DevOps Engineer Expert",
       imageUrl: az400,
       url: "https://learn.microsoft.com/api/credentials/share/en-us/41012948/738E6B3882D9F840?sharingId=117A2EE4C23A5BEA",
     },
   ];
   const render = certs.map((item) => {
     return (
-      <a href={item.url}>
+      <a href={item.url} key={item.name}>
         <img src={item.imageUrl} alt={item.name} />
       </a>
     );
