@@ -1,5 +1,5 @@
 :root {
-  --font-family: Sans-serif;
+  --font-family: system-ui, sans-serif;
   /* https://aicolors.co/ */
   --primary-100: #d4eaf7;
   --primary-200: #b6ccd8;
@@ -39,7 +39,7 @@ img {
 p,
 ul,
 ol {
-  font-size: 22px;
+  /* font-size: 22px; */
   margin-bottom: 1.5em;
 }
 button {
@@ -51,18 +51,29 @@ button {
   font-weight: bolder;
   cursor: pointer;
 }
+h1 {
+  font-size: 4.25rem;
+  font-weight: 900;
+}
+h2 {
+  font-size: 2.75rem;
+  font-weight: 300;
+}
+h3 {
+  font-size: 1.65rem;
+}
 
 body {
   border-top: 10px solid var(--accent-200);
-  margin: 0;
   font-family: var(--font-family);
   line-height: 1.75;
   background-color: var(--bg-100);
-  /* font-size: 1.25rem; */
+  font-size: 1.125;
 }
 
 .container {
   max-width: 1440px;
+  /* max-width: 960px; */
   margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -72,9 +83,9 @@ body {
 }
 
 .content {
-  grid-column: span 3;
+  grid-column: 1/-1;
   align-self: end;
-  justify-self: start;
+  padding: 0 10px;
 }
 
 a:link,
@@ -89,39 +100,38 @@ a:active {
 /*HEADER*/
 .header {
   grid-column: 1/-1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 40px;
+  align-self: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
-.header h1 {
-  font-size: 42px;
+.brand {
+  grid-column: 1/-1;
+  font-size: 2.5rem;
 }
 .page-title {
   grid-column: 1/-1;
   align-self: self-start;
   text-transform: capitalize;
-  font-size: 38px;
-  font-weight: bold;
+  /* font-size: 38px; */
   border-bottom: 2px solid var(--primary-100);
   padding-bottom: 15px;
+  padding-left: 15px;
 }
 /*FOOTER*/
 .footer {
   grid-column: 1/-1;
-  align-self: end;
   justify-self: center;
+  align-self: end;
 }
 
 .copyright {
-  margin-top: 10px;
   font-size: 16px;
 }
 .social-media {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 .social-media a:link,
 .social-media a:visited,
@@ -132,13 +142,14 @@ a:active {
 
 /*NAVBAR*/
 .navbar {
+  grid-column: 1/-1;
+  justify-self: end;
   font-size: 18px;
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
 .navbar a:link {
-  font-size: 18px;
   text-decoration: none;
   color: var(--accent-200);
   font-weight: bold;
@@ -161,7 +172,7 @@ a:active {
   font-size: 24px;
 }
 .greeting.read-more {
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 /*BLOG*/
 /*ABOUT ME*/
@@ -190,6 +201,7 @@ a:active {
   border-radius: 5px;
 }
 .avatar {
+  grid-column: 1/-1;
   justify-self: center;
   text-align: center;
 }
@@ -200,3 +212,12 @@ a:active {
 /*PROJECT*/
 /*CONTACT*/
 /*MEDIA QUERIES*/
+
+@media (min-width: 760px) {
+  .avatar {
+    grid-column: 1/1;
+  }
+  .aboutme {
+    grid-column: 2/-1;
+  }
+}
