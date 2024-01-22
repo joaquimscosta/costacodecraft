@@ -84,7 +84,6 @@ body {
 
 .content {
   grid-column: 1/-1;
-  align-self: end;
   padding: 0 10px;
 }
 
@@ -111,9 +110,8 @@ a:active {
 }
 .page-title {
   grid-column: 1/-1;
-  align-self: self-start;
+  align-self: start;
   text-transform: capitalize;
-  /* font-size: 38px; */
   border-bottom: 2px solid var(--primary-100);
   padding-bottom: 15px;
   padding-left: 15px;
@@ -163,6 +161,7 @@ a:active {
 .greeting {
   font-size: 20px;
   line-height: 2;
+  align-self: end;
 }
 .greeting h2 {
   font-size: 48px;
@@ -170,9 +169,6 @@ a:active {
 
 .greeting h3 {
   font-size: 24px;
-}
-.greeting.read-more {
-  /* font-size: 20px; */
 }
 /*BLOG*/
 /*ABOUT ME*/
