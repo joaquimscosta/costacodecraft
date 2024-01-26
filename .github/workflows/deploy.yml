@@ -58,4 +58,4 @@ jobs:
       with:
         azcliversion: 2.0.80
         inlineScript: |
-          az deployment group create --resource-group mywebrg --template-file ./iac/main.bicep
+          az deployment group create --resource-group ${{vars.AZURE_RESOURCE_GROUP}} --template-file ./iac/main.bicep
