@@ -10,8 +10,6 @@ jobs:
   build:
     runs-on: "ubuntu-latest"
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    outputs:
-      dockerImageName: ${{ steps.set-output.outputs.dockerImageName }}
     steps:
       - uses: actions/checkout@v2
 
@@ -32,15 +30,13 @@ jobs:
           tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}
           file: ./Dockerfile
 
-      - name: Set Docker image name as output
-        id: set-output
-        run: echo "dockerImageName=index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}" >> "$GITHUB_OUTPUT"
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
       name: "production"
+    env:
+      DOCKER_IMAGE_NAME: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}
 
     steps:
     - name: Checkout repository
@@ -56,7 +52,7 @@ jobs:
       with:
         azcliversion: 2.0.80
         inlineScript: |
-          echo 'dockerImageName=${{ needs.build.outputs.dockerImageName }}'
+          echo ${{ env.DOCKER_IMAGE_NAME }}
           az deployment group create --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
-          --parameters parDockerdockerImageName=${{ needs.build.outputs.dockerImageName }} \
+          --parameters parDockerImageName=${{ env.DOCKER_IMAGE_NAME }} \
           --template-file ./iac/main.bicep
