@@ -10,6 +10,8 @@ jobs:
   build:
     runs-on: "ubuntu-latest"
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    outputs:
+      dockerImageName: ${{ steps.set-output.outputs.dockerImageName }}
     steps:
       - uses: actions/checkout@v2
 
@@ -32,7 +34,7 @@ jobs:
 
       - name: Set Docker image name as output
         id: set-output
-        run: echo "::set-output name=dockerImageName::index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}"
+        run: echo "dockerImageName::index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
   deploy:
     runs-on: ubuntu-latest
