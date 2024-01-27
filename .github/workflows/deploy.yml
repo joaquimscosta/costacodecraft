@@ -32,10 +32,7 @@ jobs:
 
       - name: Get Docker image name
         id: get-image-name
-        run: echo "::set-output name=image::index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}"
-
-      - name: Use Docker image name
-        run: echo "The Docker image name is ${{ steps.get-image-name.outputs.image }}"
+        run: echo "::set-output name=imageName::index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}"
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,19 +49,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Install Bicep CLI
-      run: |
-        curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
-        chmod +x ./bicep
-        sudo mv ./bicep /usr/local/bin/bicep
-        bicep --help
-
     - name: Deploy Bicep file
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.80
         inlineScript: |
-          echo ${{ steps.get-image-name.outputs.image }}
+          echo ${{ needs.build.outputs.imageName }}
           az deployment group create --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
-          --parameters parDockerImageName=${{ steps.get-image-name.outputs.image }} \
+          --parameters parDockerImageName=${{ needs.build.outputs.imageName }} \
           --template-file ./iac/main.bicep
