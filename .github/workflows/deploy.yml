@@ -30,9 +30,9 @@ jobs:
           tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}
           file: ./Dockerfile
 
-      - name: Get Docker image name
-        id: get-image-name
-        run: echo "::set-output name=imageName::index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}"
+      - name: Set Docker image name as output
+        id: set-output
+        run: echo "::set-output name=dockerImageName::index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}"
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
       with:
         azcliversion: 2.0.80
         inlineScript: |
-          echo ${{ needs.build.outputs.imageName }}
+          echo 'dockerImageName=${{ needs.build.outputs.dockerImageName }}'
           az deployment group create --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
-          --parameters parDockerImageName=${{ needs.build.outputs.imageName }} \
+          --parameters parDockerdockerImageName=${{ needs.build.outputs.dockerImageName }} \
           --template-file ./iac/main.bicep
