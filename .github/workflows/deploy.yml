@@ -64,7 +64,7 @@ jobs:
       with:
         azcliversion: 2.0.80
         inlineScript: |
-          echo ${{vars.AZURE_RESOURCE_GROUP}}
+          echo ${{ steps.get-image-name.outputs.image }}
           az deployment group create --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
           --parameters parDockerImageName=${{ steps.get-image-name.outputs.image }} \
           --template-file ./iac/main.bicep
