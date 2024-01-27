@@ -34,7 +34,7 @@ jobs:
 
       - name: Set Docker image name as output
         id: set-output
-        run: echo "dockerImageName::index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}" >> "$GITHUB_OUTPUT"
+        run: echo "dockerImageName=index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
   deploy:
     runs-on: ubuntu-latest
