@@ -15,4 +15,4 @@ jobs:
         sudo mv ./bicep /usr/local/bin/bicep
         bicep --help
     - name: Validate Bicep file
-      run: bicep build --file ./iac/main.bicep
+      run: bicep build ./iac/main.bicep
