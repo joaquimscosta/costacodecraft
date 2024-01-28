@@ -6,28 +6,30 @@ on:
     workflows: ["Node.js CI"]
     branches: [main]
     types: [completed]
+env:
+  DOCKER_IMAGE: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }}
 jobs:
   build:
     runs-on: "ubuntu-latest"
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Log in to registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
-          registry: https://index.docker.io/v1/
-          username: ${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}
-          password: ${{ secrets.AzureAppService_ContainerPassword_3d70b8b92a494ddb8d6128b901446535 }}
+          registry: ${{ vars.DOCKER_REGISTRY_URL }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}
+          tags: ${{ env.DOCKER_IMAGE }}
           file: ./Dockerfile
 
   deploy:
@@ -35,14 +37,34 @@ jobs:
     needs: build
     environment:
       name: "production"
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
     steps:
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to Azure
+        uses: azure/login@v1
         with:
-          app-name: "costacodecraft"
-          slot-name: "production"
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_efc3ee30ad58405cb47c4fc93d894f73 }}
-          images: "index.docker.io/${{ secrets.AzureAppService_ContainerUsername_b695aa262813491fb442bffde0c91b75 }}/costacodecraft-ui:${{ github.sha }}"
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Install Bicep CLI
+        run: |
+          curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+          chmod +x ./bicep
+          sudo mv ./bicep /usr/local/bin/bicep
+          bicep --help
+
+      - name: Login to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ vars.DOCKER_REGISTRY_URL }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Deploy Bicep file
+        uses: azure/CLI@v1.0.9
+        with:
+          inlineScript: |
+            az deployment group create --name Deployment-$(date +"%Y%m%dat%H.%M") \
+            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
+            --parameters parDockerImageName=${{ env.DOCKER_IMAGE }} \
+            --template-file ./iac/main.bicep
