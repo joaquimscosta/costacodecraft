@@ -78,8 +78,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  height: 100vh;
-  height: 100dvh;
+  height: 90vh;
+  height: 90dvh;
 }
 
 .content {
