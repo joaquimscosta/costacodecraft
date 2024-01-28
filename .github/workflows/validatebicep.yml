@@ -13,7 +13,6 @@ jobs:
         curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
         chmod +x ./bicep
         sudo mv ./bicep /usr/local/bin/bicep
-        bicep --help
-
+        bicep version
     - name: Validate Bicep file
-      run: bicep build ./iac/main.bicep
+      run: bicep build --file ./iac/main.bicep
