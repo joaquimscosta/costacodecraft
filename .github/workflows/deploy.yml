@@ -66,5 +66,5 @@ jobs:
           inlineScript: |
             az deployment group create --name Deployment-$(date +"%Y%m%dat%H.%M") \
             --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
-            --parameters parDockerImageName=${{ env.DOCKER_IMAGE }} \
+            --parameters dockerImageName=${{ env.DOCKER_IMAGE }} \
             --template-file ./iac/main.bicep
