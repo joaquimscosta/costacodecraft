@@ -19,7 +19,11 @@ function Navbar() {
       </NavLink>
     );
   });
-  return <nav className="navbar bg-base-500">{renderedLinks}</nav>;
+  return (
+    <nav className="navbar bg-neutral text-neutral-content">
+      {renderedLinks}
+    </nav>
+  );
 }
 
 export default Navbar;

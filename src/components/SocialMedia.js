@@ -3,12 +3,12 @@ import { FaLinkedin } from "react-icons/fa";
 
 function SocialMedia() {
   return (
-    <nav className="flex text-2xl justify-center gap-2 social-media">
+    <nav className="flex justify-center gap-2 social-media">
       <a href="https://github.com/joaquimscosta">
-        <FaGithub size="" style={{ color: "#333" }} />
+        <FaGithub size={36} style={{ color: "#fff" }} />
       </a>
       <a href="https://www.linkedin.com/in/joaquimscosta">
-        <FaLinkedin size="" style={{ color: "#0077B5" }} />
+        <FaLinkedin size={36} style={{ color: "#0077B5" }} />
       </a>
     </nav>
   );

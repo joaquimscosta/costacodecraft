@@ -13,7 +13,7 @@ export default function PageTitle() {
 
   if (title) {
     return (
-      <h2 className="capitalize pb-2 pl0-2 text-5xl border-b-2 page-title">
+      <h2 className="capitalize divider divider-start pb-2 pl-2 text-5xl page-title">
         {title}
       </h2>
     );

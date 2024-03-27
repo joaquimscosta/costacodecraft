@@ -23,7 +23,7 @@ function Certificate() {
   const renderedCerts = certs.map((item) => {
     return (
       <a href={item.url} key={item.name}>
-        <div className="max-w-md">
+        <div className="max-w-48">
           <img className="max-w-full" src={item.imageUrl} alt={item.name} />
         </div>
       </a>
