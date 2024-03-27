@@ -2,7 +2,7 @@ import SocialMedia from "./SocialMedia";
 import className from "classnames";
 
 function Footer({ ...rest }) {
-  const classes = className(rest.className, "justify-center footer");
+  const classes = className(rest.className, "footer");
   return (
     <footer {...rest} className={classes}>
       <SocialMedia />

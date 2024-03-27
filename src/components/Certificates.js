@@ -1,5 +1,6 @@
 import az204 from "../assets/images/azure-developer-associate-600x600.png";
 import az400 from "../assets/images/azure-devops-engineer-expert-600x600.png";
+import dp420 from "../assets/images/azure-cosmosdb-developer.png";
 
 function Certificate() {
   const certs = [
@@ -13,8 +14,13 @@ function Certificate() {
       imageUrl: az400,
       url: "https://learn.microsoft.com/api/credentials/share/en-us/41012948/738E6B3882D9F840?sharingId=117A2EE4C23A5BEA",
     },
+    {
+      name: "Azure Cosmos Database Developer Specialty",
+      imageUrl: dp420,
+      url: "https://learn.microsoft.com/api/credentials/share/en-us/41012948/92700F7B91E649AA?sharingId=117A2EE4C23A5BEA",
+    },
   ];
-  const render = certs.map((item) => {
+  const renderedCerts = certs.map((item) => {
     return (
       <a href={item.url} key={item.name}>
         <div className="max-w-md">
@@ -23,7 +29,7 @@ function Certificate() {
       </a>
     );
   });
-  return <p className="flex justify-center gap-2">{render}</p>;
+  return <p className="flex justify-center gap-2">{renderedCerts}</p>;
 }
 
 export default Certificate;
