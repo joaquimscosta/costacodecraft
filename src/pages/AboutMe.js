@@ -1,12 +1,17 @@
 import Certificate from "../components/Certificates";
 import Avatar from "../components/Avatar";
 import Skills from "../components/Skills";
+import Sidebar from "../components/Sidebar";
 
-function AboutMe() {
+function AboutMe({ ...rest }) {
+  console.log(rest);
+
   return (
     <>
-      <Avatar />
-      <article className="aboutme content">
+      <Sidebar className="w-full md:w-64 p-4 md:min-h-full">
+        <Avatar />
+      </Sidebar>
+      <article className="flex-1 p-4 overflow-y-auto aboutme">
         <div>
           <p>
             I've been developing software for about 13 years, most recently as a
@@ -26,16 +31,19 @@ function AboutMe() {
             ).
           </p>
           <Skills />
-          <ul style={{ marginLeft: "20px" }}>
+          <ul className="ml-4">
             <li>
               Connect with me on LinkedIn:
-              <a href="https://www.linkedin.com/in/joaquimscosta/">
+              <a
+                className="link m-2"
+                href="https://www.linkedin.com/in/joaquimscosta/"
+              >
                 https://www.linkedin.com/in/joaquimscosta/
               </a>
             </li>
             <li>
               See what I have been working on:
-              <a href="https://github.com/joaquimscosta">
+              <a className="link m-2" href="https://github.com/joaquimscosta">
                 https://github.com/joaquimscosta
               </a>
             </li>

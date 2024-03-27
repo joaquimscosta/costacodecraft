@@ -17,11 +17,13 @@ function Certificate() {
   const render = certs.map((item) => {
     return (
       <a href={item.url} key={item.name}>
-        <img src={item.imageUrl} alt={item.name} />
+        <div className="max-w-md">
+          <img className="max-w-full" src={item.imageUrl} alt={item.name} />
+        </div>
       </a>
     );
   });
-  return <p className="certificates">{render}</p>;
+  return <p className="flex justify-center gap-2">{render}</p>;
 }
 
 export default Certificate;

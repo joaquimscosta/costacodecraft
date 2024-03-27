@@ -1,8 +1,10 @@
 import SocialMedia from "./SocialMedia";
+import className from "classnames";
 
-function Footer() {
+function Footer({ ...rest }) {
+  const classes = className(rest.className, "justify-center footer");
   return (
-    <footer className="footer">
+    <footer {...rest} className={classes}>
       <SocialMedia />
       <p className="copyright">&copy; 2024 Joaquim Costa</p>
     </footer>
