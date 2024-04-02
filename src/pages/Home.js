@@ -6,14 +6,10 @@ function Home() {
         <div className="max-w-md">
           <h2 className="text-5xl font-bold">Hi, I am Joaquim</h2>
           <h3 className="text-3xl font-thin">Software Engineer</h3>
-          <p className="py-6 text-2xl read-more">
-            Read more
+          <p className="py-6 text-xl read-more">
+            Always Meeting End-User Requirements With Innovation. Read more
             <Link className="link link-info m-1" to={"/about"}>
-              about me
-            </Link>
-            or
-            <Link className="link link-info m-1" to={"/contact"}>
-              contact me
+              about me.
             </Link>
           </p>
         </div>

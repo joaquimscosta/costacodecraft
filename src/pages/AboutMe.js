@@ -3,9 +3,7 @@ import Avatar from "../components/Avatar";
 import Skills from "../components/Skills";
 import Sidebar from "../components/Sidebar";
 
-function AboutMe({ ...rest }) {
-  console.log(rest);
-
+function AboutMe() {
   return (
     <>
       <Sidebar className="w-full md:w-64 p-4 md:min-h-full">
@@ -13,22 +11,35 @@ function AboutMe({ ...rest }) {
       </Sidebar>
       <article className="flex-1 p-4 overflow-y-auto aboutme">
         <p>
-          I've been developing software for about 13 years, most recently as a
-          staff software engineer. I currently work at Capgemini, a new role I
-          started May 1st, 2023. I have completed my Azure certifications in
-          "Azure DevOps engineer expert", and "Azure developers associate".
-          Currently, I have been upskilling to become a Pythonista.
+          Hello! I am Joaquim Costa. I am an avid Software Engineer who
+          specializes in building cloud native, resilient and secure
+          application. I've been developing software for over 13 years, most
+          recently as a Staff Software Engineer. I currently work at Capgemini,
+          a role I started May 1st, 2023. Previously, I worked at General
+          Electric where I was the Lead developer for the "Workflows"
+          application and contributed to the development of the most popular
+          application platform.
+        </p>
+        <p>
+          My focus areas include Java, Kotlin, Spring Boot, DevOps, and Cloud
+          Native technologies in general. I support continuous delivery
+          practices and believe in a culture of collaboration aimed at
+          delivering value to users, customers, and businesses.
         </p>
         <Certificate />
         <p>
-          My primary interests include DevOps, (particularly around
-          implementation and transformation of teams to use DevOps effectively)
-          and developing Cloud Native application using Java development in the
-          Azure cloud. When I am not programming, I enjoy traveling, automating
-          my house, playing soccer (<button>Futebol</button>), and dancing (
-          <button>Kizomba</button>).
+          I am proficient in multiple Azure services. In the past 7 years, I
+          have been deploying application in Azure (AKS), and I continue to
+          upskill in Azure AI Services, and Azure Machine Learning. In addition,
+          since last year (2023) I have immersed myself in the world of Python
+          programming.
+        </p>
+        <p>
+          When I am not programming, I enjoy traveling, automating my house,
+          playing soccer (Futebol), and dancing. I am based in Rhode Island.
         </p>
         <Skills />
+
         <p>
           <ul className="ml-4">
             <li>
