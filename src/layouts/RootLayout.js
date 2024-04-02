@@ -7,7 +7,7 @@ export default function RootLayout() {
     <>
       <div className="flex flex-col min-h-screen">
         <Header className="py-4 w-full" />
-        <div className="flex flex-1 flex-col md:flex-row">
+        <div className="flex flex-1 flex-col md:flex-row md:mx-auto">
           <Outlet />
         </div>
         <Footer className="justify-center p-4 w-full" />

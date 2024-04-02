@@ -7,7 +7,7 @@ function Skills() {
     .map((skill) => {
       return (
         <span
-          className="px-1.5 py-2 text-base text-base-content bg-base-200 font-medium leading-4 rounded antialiased"
+          className="px-1.5 py-2 text-base text-neutral bg-base-200 font-semibold leading-4 rounded antialiased"
           key={skill.name}
           style={{ backgroundColor: skill.color }}
         >

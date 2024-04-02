@@ -9,7 +9,7 @@ function AboutMe() {
       <Sidebar className="w-full md:w-64 p-4 md:min-h-full">
         <Avatar />
       </Sidebar>
-      <article className="flex-1 p-4 overflow-y-auto aboutme">
+      <article className="flex-1 p-4 overflow-y-auto prose md:prose-lg aboutme">
         <p>
           Hello! I am Joaquim Costa. I am an avid Software Engineer who
           specializes in building cloud native, resilient and secure

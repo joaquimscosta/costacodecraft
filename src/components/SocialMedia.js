@@ -1,9 +1,9 @@
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
-function SocialMedia() {
+function SocialMedia({ ...rest }) {
   return (
-    <nav className="flex justify-center gap-2 social-media">
+    <nav {...rest} className={rest.className}>
       <a href="https://github.com/joaquimscosta">
         <FaGithub size={36} style={{ color: "#fff" }} />
       </a>
