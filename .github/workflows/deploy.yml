@@ -67,4 +67,4 @@ jobs:
             az deployment group create --name Deployment-$(date +"%Y%m%dat%H.%M") \
             --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
             --parameters dockerImageName=${{ env.DOCKER_IMAGE }} \
-            --template-file ./iac/main.bicep
+            --template-file ./infrastructure/main.bicep
