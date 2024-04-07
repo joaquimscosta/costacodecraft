@@ -12,7 +12,11 @@ export default function PageTitle() {
   }, [location]);
 
   if (title) {
-    return <h2 className="page-title">{title}</h2>;
+    return (
+      <h2 className="capitalize divider divider-start pb-2 pl-2 text-5xl page-title">
+        {title}
+      </h2>
+    );
   }
   return <></>;
 }

@@ -1,18 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
-function SocialMedia() {
+function SocialMedia({ ...rest }) {
   return (
-    <nav className="social-media">
+    <nav {...rest} className={rest.className}>
       <a href="https://github.com/joaquimscosta">
-        <FontAwesomeIcon icon={faGithub} size="2x" style={{ color: "#333" }} />
+        <FaGithub size={36} style={{ color: "#fff" }} />
       </a>
       <a href="https://www.linkedin.com/in/joaquimscosta">
-        <FontAwesomeIcon
-          icon={faLinkedin}
-          size="2x"
-          style={{ color: "#0077B5" }}
-        />
+        <FaLinkedin size={36} style={{ color: "#0077B5" }} />
       </a>
     </nav>
   );

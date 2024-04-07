@@ -1,5 +1,7 @@
 function Blog() {
-  return <div className="blog content">Blog</div>;
+  return (
+    <div className="flex-1 p-4 overflow-y-auto">Blog work in progress!</div>
+  );
 }
 
 export default Blog;

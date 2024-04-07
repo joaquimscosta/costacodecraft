@@ -1,14 +1,19 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Home() {
-  const navigate = useNavigate();
   return (
-    <div className="greeting content">
-      <h2>Hi, I am Joaquim</h2>
-      <h3>Software Engineer</h3>
-      <p className="read-more">
-        Read more <button onClick={() => navigate("/about")}>about me</button>{" "}
-        or <button onClick={() => navigate("/contact")}>contact me</button>
-      </p>
+    <div className="flex-1 self-center p-4 overflow-y-auto hero greeting">
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <h2 className="text-5xl font-bold">Hi, I am Joaquim</h2>
+          <h3 className="text-3xl font-thin">Software Engineer</h3>
+          <p className="py-6 text-xl read-more">
+            Always Meeting End-User Requirements With Innovation. Read more
+            <Link className="link link-info m-1" to={"/about"}>
+              about me.
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

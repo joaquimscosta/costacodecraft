@@ -1,12 +1,27 @@
 import { NavLink } from "react-router-dom";
+
 function Navbar() {
+  const links = [
+    { label: "Home", path: "/" },
+    { label: "Blog", path: "/blog" },
+    { label: "About", path: "/about" },
+    { label: "Projects", path: "/projects" },
+    { label: "Contact", path: "/contact" },
+  ];
+  const renderedLinks = links.map((link) => {
+    return (
+      <NavLink
+        className="btn btn-ghost text-xl"
+        to={link.path}
+        key={link.label}
+      >
+        {link.label}
+      </NavLink>
+    );
+  });
   return (
-    <nav className="navbar">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/blog">Blog</NavLink>
-      <NavLink to="/about">About</NavLink>
-      <NavLink to="/projects">Projects</NavLink>
-      <NavLink to="/contact">Contact</NavLink>
+    <nav className="navbar bg-neutral text-neutral-content">
+      {renderedLinks}
     </nav>
   );
 }
