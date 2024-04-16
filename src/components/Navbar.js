@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { HiMenuAlt1 } from "react-icons/hi";
 import ThemeMode from "./ThemeMode";
 
 function Navbar() {
@@ -9,7 +10,7 @@ function Navbar() {
     { label: "Projects", path: "/projects" },
     { label: "Contact", path: "/contact" },
   ];
-  const renderedLinks = links.map((link) => {
+  const renderedNavbarLinks = links.map((link) => {
     return (
       <NavLink
         className="btn btn-ghost text-xl"
@@ -20,6 +21,15 @@ function Navbar() {
       </NavLink>
     );
   });
+
+  const renderedDropdownMenuLinks = links.map((link) => {
+    return (
+      <li key={link.label}>
+        <NavLink to={link.path}>{link.label}</NavLink>
+      </li>
+    );
+  });
+
   return (
     <nav className="navbar bg-neutral text-neutral-content">
       <div className="navbar-start">
@@ -29,29 +39,16 @@ function Navbar() {
             role="button"
             className="btn btn-ghost text-xl lg:hidden"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+            <HiMenuAlt1 className="h-5 w-5" />
           </div>
-          <div className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral bg-opacity-80 rounded-box w-52">
-            {renderedLinks}
-          </div>
+          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral bg-opacity-80 rounded-box w-52">
+            {renderedDropdownMenuLinks}
+          </ul>
         </div>
       </div>
-      <div className="navbar-center hidden lg:flex">{renderedLinks}</div>
+      <div className="navbar-center hidden lg:flex">{renderedNavbarLinks}</div>
       <div className="navbar-end">
-        <ThemeMode className="btn btn-ghost text-xl" />
+        <ThemeMode className="btn btn-ghost" />
       </div>
     </nav>
   );
