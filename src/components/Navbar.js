@@ -50,9 +50,9 @@ function Navbar() {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">{renderedLinks}</div>
-      {/* <div className="navbar-end">
+      <div className="navbar-end">
         <ThemeMode className="btn btn-ghost text-xl" />
-      </div> */}
+      </div>
     </nav>
   );
 }

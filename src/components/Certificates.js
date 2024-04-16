@@ -23,13 +23,13 @@ function Certificate() {
   const renderedCerts = certs.map((item) => {
     return (
       <a href={item.url} key={item.name}>
-        <div className="max-w-40 m-4 hover:animate-pulse">
+        <span className="max-w-40 m-4 hover:animate-pulse">
           <img className="max-w-full" src={item.imageUrl} alt={item.name} />
-        </div>
+        </span>
       </a>
     );
   });
-  return <p className="flex justify-center gap-2">{renderedCerts}</p>;
+  return <div className="flex justify-center gap-2">{renderedCerts}</div>;
 }
 
 export default Certificate;

@@ -40,7 +40,7 @@ function AboutMe() {
         </p>
         <Skills />
 
-        <p>
+        <div>
           <ul className="ml-4">
             <li>
               Connect with me on LinkedIn:
@@ -58,7 +58,7 @@ function AboutMe() {
               </a>
             </li>
           </ul>
-        </p>
+        </div>
       </article>
     </>
   );
