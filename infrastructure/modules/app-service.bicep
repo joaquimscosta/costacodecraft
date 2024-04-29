@@ -7,33 +7,37 @@ param appName string
   'B1'
   'F1'
 ])
-param appServiceSku string
+param skuName string
+
+@description('App Service Plan Capacity')
+@minValue(1)
+@maxValue(2)
+param capacity int = 1
 
 @description('Full Container/Docker image name')
 param dockerImageName string
 
+@description('Common tags to apply to all resources.')
+param tags object
+
 var appServicePlanName = 'mywebapp'
 var appServicePlanKind = 'linux'
-var commonTags = {
-  app: appName
-  environment: 'Production'
-  purpose: 'Personal Website'
-}
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: appServicePlanName
   location: location
   kind: appServicePlanKind
-  tags: commonTags
+  tags: tags
   sku: {
-    name: appServiceSku
+    name: skuName
+    capacity: capacity
   }
 }
 
-resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
+resource app 'Microsoft.Web/sites@2023-01-01' = {
   name: appName
   location: location
-  tags: commonTags
+  tags: tags
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
@@ -43,4 +47,4 @@ resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
   }
 }
 
-output appHostname string = appServiceApp.properties.defaultHostName
+output hostname string = app.properties.defaultHostName
