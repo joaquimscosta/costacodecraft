@@ -2,10 +2,16 @@
 param location string = resourceGroup().location
 
 @description('The name of the App Service app. This must be glabally unique.')
-param appName string = 'costacodecraft'
+param appName string
 
 @description('Docker image name')
 param dockerImageName string
+
+@description('The hostnames for the app service')
+param hostNames array = [
+  'costacodecraft.com'
+  'www.costacodecraft.com'
+]
 
 @description('The environment where the app is deployed.')
 @allowed([
@@ -13,7 +19,7 @@ param dockerImageName string
   'dev'
 ])
 param environmentType string
-var config = {
+var configurations = {
   PROD: {
     appServiceSku: 'B1'
     appServiceCapacity: 1
@@ -34,10 +40,11 @@ module appService './modules/app-service.bicep' = {
   name: 'appService'
   params: {
     appName: appName
-    skuName: config[environmentType].appServiceSku
-    capacity: config[environmentType].appServiceCapacity
+    skuName: configurations[environmentType].appServiceSku
+    capacity: configurations[environmentType].appServiceCapacity
     dockerImageName: dockerImageName
     tags:commonTags
+    hostNames: hostNames
     location: location
   }
 }

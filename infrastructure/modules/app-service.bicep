@@ -20,7 +20,10 @@ param dockerImageName string
 @description('Common tags to apply to all resources.')
 param tags object
 
-var appServicePlanName = 'mywebapp'
+@description('The hostnames of the app')
+param hostNames array
+
+var appServicePlanName = '${appName}-plan'
 var appServicePlanKind = 'linux'
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
@@ -35,7 +38,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
 }
 
 resource app 'Microsoft.Web/sites@2023-01-01' = {
-  name: appName
+  name: '${appName}-app'
   location: location
   tags: tags
   properties: {
@@ -46,5 +49,17 @@ resource app 'Microsoft.Web/sites@2023-01-01' = {
     }
   }
 }
+
+resource certificate 'Microsoft.Web/certificates@2023-01-01' = [
+  for name in hostNames:{
+  name: '${name}-${appName}'
+  location: location
+  tags: tags
+  properties:{
+    hostNames: ['${name}']
+    canonicalName: '${name}'
+    serverFarmId: appServicePlan.id
+  }
+}]
 
 output hostname string = app.properties.defaultHostName
