@@ -6,6 +6,7 @@ on:
       - "v*"
 env:
   DOCKER_IMAGE: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}
+
 jobs:
   build:
     runs-on: "ubuntu-latest"
@@ -38,6 +39,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: production
     needs: build
     steps:
       - name: Checkout repository
