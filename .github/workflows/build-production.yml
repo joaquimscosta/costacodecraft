@@ -68,5 +68,4 @@ jobs:
           inlineScript: |
             az deployment group create --name Deployment-$(date +"%Y%m%dat%H.%M") \
             --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
-            --parameters dockerImageName=${{ env.DOCKER_IMAGE }}:${{ needs.build.outputs.TAG }} \
-            --template-file ./infrastructure/main.bicep
+            --parameters ./infrastructure/main.bicepparam dockerImageName=${{ env.DOCKER_IMAGE }}:${{ needs.build.outputs.TAG }}

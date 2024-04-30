@@ -4,7 +4,7 @@ param location string = resourceGroup().location
 @description('The name of the App Service app. This must be glabally unique.')
 param appName string
 
-@description('Docker image name')
+@description('Docker image full name. repository/image:tag')
 param dockerImageName string
 
 @description('The hostnames for the app service')

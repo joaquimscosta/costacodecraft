@@ -14,7 +14,7 @@ param skuName string
 @maxValue(2)
 param capacity int = 1
 
-@description('Full Container/Docker image name')
+@description('Full Container/Docker image name. repository/image:tag')
 param dockerImageName string
 
 @description('Common tags to apply to all resources.')
@@ -52,7 +52,7 @@ resource app 'Microsoft.Web/sites@2023-01-01' = {
 
 resource certificate 'Microsoft.Web/certificates@2023-01-01' = [
   for name in hostNames:{
-  name: '${name}-${appName}'
+  name: '${name}-certs'
   location: location
   tags: tags
   properties:{
