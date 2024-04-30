@@ -51,15 +51,16 @@ resource app 'Microsoft.Web/sites@2023-01-01' = {
 }
 
 resource certificate 'Microsoft.Web/certificates@2023-01-01' = [
-  for name in hostNames:{
-  name: '${name}-certs'
-  location: location
-  tags: tags
-  properties:{
-    hostNames: ['${name}']
-    canonicalName: '${name}'
-    serverFarmId: appServicePlan.id
+  for name in hostNames: {
+    name: '${name}-certs'
+    location: location
+    tags: tags
+    properties: {
+      hostNames: ['${name}']
+      canonicalName: '${name}'
+      serverFarmId: appServicePlan.id
+    }
   }
-}]
+]
 
 output hostname string = app.properties.defaultHostName

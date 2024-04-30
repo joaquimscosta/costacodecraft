@@ -1,17 +1,17 @@
 @description('Location for all resources')
 param location string = resourceGroup().location
 
-@description('The name of the App Service app. This must be glabally unique.')
+@description('The name of the App Service. This must be globally unique.')
 param appName string
 
 @description('Docker image full name. repository/image:tag')
 param dockerImageName string
 
 @description('The hostnames for the app service')
-param hostNames array = [
-  'costacodecraft.com'
-  'www.costacodecraft.com'
-]
+param hostNames array
+
+@description('Common tags for all resources')
+param commonTags object
 
 @description('The environment where the app is deployed.')
 @allowed([
@@ -20,20 +20,14 @@ param hostNames array = [
 ])
 param environmentType string
 var configurations = {
-  PROD: {
+  prod: {
     appServiceSku: 'B1'
     appServiceCapacity: 1
   }
-  DEV: {
+  dev: {
     appServiceSku: 'F1'
     appServiceCapacity: 1
   }
-}
-
-var commonTags = {
-    app: appName
-    environment: 'Production'
-    purpose: 'Personal Website'
 }
 
 module appService './modules/app-service.bicep' = {
@@ -43,7 +37,7 @@ module appService './modules/app-service.bicep' = {
     skuName: configurations[environmentType].appServiceSku
     capacity: configurations[environmentType].appServiceCapacity
     dockerImageName: dockerImageName
-    tags:commonTags
+    tags: commonTags
     hostNames: hostNames
     location: location
   }
