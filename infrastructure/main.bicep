@@ -1,46 +1,46 @@
 @description('Location for all resources')
 param location string = resourceGroup().location
 
-@description('App Service Plan Sku')
-@allowed([
-  'B1'
-])
-param appServiceSku string = 'B1'
+@description('The name of the App Service. This must be globally unique.')
+param appName string
 
-@description('Docker image name')
+@description('Docker image full name. repository/image:tag')
 param dockerImageName string
 
-var appServicePlanName = 'mywebapp'
-var appName = 'costacodecraft'
-var appServicePlanKind = 'linux'
-var commonTags = {
-  app: appName
-  environment: 'Production'
-  purpose: 'Personal Website'
-}
+@description('The hostnames for the app service')
+param hostNames array
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
-  name: appServicePlanName
-  location: location
-  kind: appServicePlanKind
-  tags: commonTags
-  sku: {
-    name: appServiceSku
+@description('Common tags for all resources')
+param commonTags object
+
+@description('The environment where the app is deployed.')
+@allowed([
+  'prod'
+  'dev'
+])
+param environmentType string
+var configurations = {
+  prod: {
+    appServiceSku: 'B1'
+    appServiceCapacity: 1
+  }
+  dev: {
+    appServiceSku: 'F1'
+    appServiceCapacity: 1
   }
 }
 
-resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
-  name: appName
-  location: location
-  tags: commonTags
-  properties: {
-    serverFarmId: appServicePlan.id
-    httpsOnly: true
-    siteConfig: {
-      linuxFxVersion: 'DOCKER|${dockerImageName}'
-    }
+module appService './modules/app-service.bicep' = {
+  name: 'appService'
+  params: {
+    appName: appName
+    skuName: configurations[environmentType].appServiceSku
+    capacity: configurations[environmentType].appServiceCapacity
+    dockerImageName: dockerImageName
+    tags: commonTags
+    hostNames: hostNames
+    location: location
   }
 }
 
-output appHostname string = appServiceApp.properties.defaultHostName
-output dockerImageName string = dockerImageName
+output appHostname string = appService.outputs.hostname
