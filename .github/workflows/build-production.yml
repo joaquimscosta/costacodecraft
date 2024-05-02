@@ -45,7 +45,7 @@ jobs:
     environment:
       name: production
     env:
-      DOCKER_IMAGE_NAME: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:${{ needs.build.outputs.TAG }}}
+      DOCKER_IMAGE_NAME: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:${{ needs.build.outputs.TAG }}
     needs: build
     steps:
       - name: Checkout repository
