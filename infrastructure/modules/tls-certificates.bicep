@@ -1,30 +1,33 @@
-
-param bindingHostNames array = []
+@description('The Custom domain name to create the certificate and bind it to the app.')
+param domainName string
+@description('The tags to associate with the certificate.')
 param tags object = {}
+@description('The region in which the certificate should be created.')
 param location string
-param appServicePlan object
+@description('The app name to bind the certificate to.')
+param appName string
 
-resource certificate 'Microsoft.Web/certificates@2023-01-01' = [
-  for name in bindingHostNames: {
-    name: name
-    location: location
-    tags: tags
-    properties: {
-      hostNames: [name]
-      canonicalName: name
-      serverFarmId: appServicePlan.id
-    }
+resource app 'Microsoft.Web/sites@2021-02-01' existing = {
+  name: appName
+}
+
+resource certificate 'Microsoft.Web/certificates@2023-01-01' = {
+  name: domainName
+  location: location
+  tags: tags
+  properties: {
+    hostNames: [domainName]
+    canonicalName: domainName
+    serverFarmId: app.properties.serverFarmId
   }
-]
+}
 
 module enableCertificates 'dns-binding.bicep' = {
-  name: 'enableCertsForDnsBindings'
+  name: 'bindCertificateToDomain'
   params: {
-    appName: 'costacodecraft'
-    dnsSettings: [for name in bindingHostNames:{
-      name: name
-      sslState: 'SniEnabled'
-      thumbprint: certificate[name].properties.thumbprint
-    } ]
+    appName: app.name
+    customDomainName: domainName
+    sslState: 'SniEnabled'
+    thumbprint: certificate.properties.thumbprint
   }
 }

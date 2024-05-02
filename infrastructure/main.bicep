@@ -30,7 +30,6 @@ var configurations = {
   }
 }
 
-
 module appService './modules/app-service.bicep' = {
   name: 'appService'
   params: {
@@ -43,28 +42,36 @@ module appService './modules/app-service.bicep' = {
   }
 }
 
-// module hostNameBinding './modules/dns-binding.bicep' = {
-//   name: 'hostNameBinding'
-//   params: {
-//     appName: appName
-//     dnsSettings: dnsSettings
-//   }
-//   dependsOn: [
-//     appService
-//   ]
-// }
+// setting batchSize to 1 because getting intermittent errors when creating multiple resources in parallel
+@batchSize(1)
+module hostNameBinding 'modules/dns-binding.bicep' = [
+  for name in customDomainNames: {
+    name: 'hostNameBinding-${name}'
+    params: {
+      appName: appService.outputs.appName
+      customDomainName: name
+      sslState: 'Disabled'
+    }
+  }
+]
 
-// module tlsCertificate './modules/tls-certificates.bicep' = if(environmentType == 'prod' && length(customDomainNames) > 0) {
-//   name: 'tlsCertificate'
-//   params: {
-//     bindingHostNames: hostNameBinding.outputs.bindingHostNames
-//     appServicePlan: appService.outputs.appServicePlan
-//     tags: commonTags
-//     location: location
-//   }
-//   dependsOn: [
-//     hostNameBinding
-//   ]
-// }
-
+module tlsCerfiticate 'modules/tls-certificates.bicep' = [
+  for name in customDomainNames: {
+    name: 'tlsCertificate-${name}'
+    params: {
+      location: location
+      tags: commonTags
+      appName: appService.outputs.appName
+      domainName: name
+    }
+    /*
+    The we need to bind the domain name with the application, then we need to bind the certificate with the domain name.
+    Therefore, we need to explicitly wait for the hostNameBinding to be created before creating the certificate, 
+    which will bind the certificate with the domain name and update the sslState
+    */
+    dependsOn: [
+      hostNameBinding
+    ]
+  }
+]
 output appHostname string = appService.outputs.hostname
