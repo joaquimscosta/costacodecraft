@@ -7,8 +7,8 @@ param appName string
 @description('Docker image full name. repository/image:tag')
 param dockerImageName string
 
-@description('The hostnames for the app service')
-param hostNames array
+@description('List of custom domain names to bind to the App Service.')
+param customDomainNames array = []
 
 @description('Common tags for all resources')
 param commonTags object
@@ -38,9 +38,40 @@ module appService './modules/app-service.bicep' = {
     capacity: configurations[environmentType].appServiceCapacity
     dockerImageName: dockerImageName
     tags: commonTags
-    hostNames: hostNames
     location: location
   }
 }
 
+// setting batchSize to 1 because getting intermittent errors when creating multiple resources in parallel
+@batchSize(1)
+module hostNameBinding 'modules/dns-binding.bicep' = [
+  for name in customDomainNames: {
+    name: 'hostNameBinding-${name}'
+    params: {
+      appName: appService.outputs.appName
+      customDomainName: name
+      sslState: 'Disabled'
+    }
+  }
+]
+
+module tlsCerfiticate 'modules/tls-certificates.bicep' = [
+  for name in customDomainNames: {
+    name: 'tlsCertificate-${name}'
+    params: {
+      location: location
+      tags: commonTags
+      appName: appService.outputs.appName
+      domainName: name
+    }
+    /*
+    The we need to bind the domain name with the application, then we need to bind the certificate with the domain name.
+    Therefore, we need to explicitly wait for the hostNameBinding to be created before creating the certificate, 
+    which will bind the certificate with the domain name and update the sslState
+    */
+    dependsOn: [
+      hostNameBinding
+    ]
+  }
+]
 output appHostname string = appService.outputs.hostname
