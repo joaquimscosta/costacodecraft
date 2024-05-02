@@ -7,8 +7,8 @@ param appName string
 @description('Docker image full name. repository/image:tag')
 param dockerImageName string
 
-@description('The hostnames for the app service')
-param hostNames array
+@description('List of custom domain names to bind to the App Service.')
+param customDomainNames array = []
 
 @description('Common tags for all resources')
 param commonTags object
@@ -30,6 +30,7 @@ var configurations = {
   }
 }
 
+
 module appService './modules/app-service.bicep' = {
   name: 'appService'
   params: {
@@ -38,9 +39,32 @@ module appService './modules/app-service.bicep' = {
     capacity: configurations[environmentType].appServiceCapacity
     dockerImageName: dockerImageName
     tags: commonTags
-    hostNames: hostNames
     location: location
   }
 }
+
+// module hostNameBinding './modules/dns-binding.bicep' = {
+//   name: 'hostNameBinding'
+//   params: {
+//     appName: appName
+//     dnsSettings: dnsSettings
+//   }
+//   dependsOn: [
+//     appService
+//   ]
+// }
+
+// module tlsCertificate './modules/tls-certificates.bicep' = if(environmentType == 'prod' && length(customDomainNames) > 0) {
+//   name: 'tlsCertificate'
+//   params: {
+//     bindingHostNames: hostNameBinding.outputs.bindingHostNames
+//     appServicePlan: appService.outputs.appServicePlan
+//     tags: commonTags
+//     location: location
+//   }
+//   dependsOn: [
+//     hostNameBinding
+//   ]
+// }
 
 output appHostname string = appService.outputs.hostname

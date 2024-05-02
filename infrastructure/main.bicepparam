@@ -3,7 +3,7 @@ using 'main.bicep'
 param dockerImageName = readEnvironmentVariable('DOCKER_IMAGE_NAME')
 param appName = 'costacodecraft'
 param environmentType = 'prod'
-param hostNames = [
+param customDomainNames = [
   'costacodecraft.com'
   'www.costacodecraft.com'
 ]
