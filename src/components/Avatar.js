@@ -12,7 +12,7 @@ export default function Avatar() {
       <div>
         <h2 className="text-4xl font-thin avatar-name">Joaquim Costa</h2>
         <h3 className="text-2xl font-light avatar-title">Software Engineer</h3>
-        <h3 className="text-xl avatar-company">Capgemini</h3>
+        {/* <h3 className="text-xl avatar-company">Capgemini</h3> */}
       </div>
     </div>
   );
