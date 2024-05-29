@@ -41,7 +41,10 @@ function Navbar() {
           >
             <HiMenuAlt1 className="h-5 w-5" />
           </div>
-          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral bg-opacity-80 rounded-box w-52">
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral bg-opacity-80 rounded-box w-52"
+          >
             {renderedDropdownMenuLinks}
           </ul>
         </div>

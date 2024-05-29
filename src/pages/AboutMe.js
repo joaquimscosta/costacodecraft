@@ -9,16 +9,15 @@ function AboutMe() {
       <Sidebar className="w-full md:w-64 p-4 md:min-h-full">
         <Avatar />
       </Sidebar>
-      <article className="flex-1 p-4 overflow-y-auto prose md:prose-lg aboutme">
+      <article className="flex-1 p-4 overflow-y-auto prose md:prose-xl aboutme">
         <p>
           Hello! I am Joaquim Costa. I am an avid Software Engineer who
           specializes in building cloud native, resilient and secure
           application. I've been developing software for over 13 years, most
-          recently as a Staff Software Engineer. I currently work at Capgemini,
-          a role I started May 1st, 2023. Previously, I worked at General
-          Electric where I was the Lead developer for the "Workflows"
-          application and contributed to the development of the most popular
-          application platform.
+          recently as a Staff Software Engineer. I worked at Capgemini, between
+          May 2023 to May 2024. Previously, I worked at General Electric where I
+          was the Lead developer for the "Workflows" application and contributed
+          to the development of the most popular application platform.
         </p>
         <p>
           My focus areas include Java, Kotlin, Spring Boot, DevOps, and Cloud
@@ -39,26 +38,6 @@ function AboutMe() {
           playing soccer (Futebol), and dancing. I am based in Rhode Island.
         </p>
         <Skills />
-
-        <div>
-          <ul className="ml-4">
-            <li>
-              Connect with me on LinkedIn:
-              <a
-                className="link m-2"
-                href="https://www.linkedin.com/in/joaquimscosta/"
-              >
-                https://www.linkedin.com/in/joaquimscosta/
-              </a>
-            </li>
-            <li>
-              See what I have been working on:
-              <a className="link m-2" href="https://github.com/joaquimscosta">
-                https://github.com/joaquimscosta
-              </a>
-            </li>
-          </ul>
-        </div>
       </article>
     </>
   );
