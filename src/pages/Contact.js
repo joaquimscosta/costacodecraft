@@ -1,6 +1,6 @@
 function Contact() {
   return (
-    <div className="flex-1 p-4 overflow-y-auto prose md:prose-xl contact">
+    <div className="flex-1 p-4 overflow-y-auto prose md:prose-2xl contact">
       <p>
         Thank you for visiting my page! I truly appreciate your interest. If
         you'd like to connect, please use the channels below:

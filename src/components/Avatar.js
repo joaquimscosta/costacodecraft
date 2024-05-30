@@ -5,8 +5,8 @@ export default function Avatar() {
   return (
     <div className="justify-self-center text-center">
       <div className="avatar">
-        <div className="max-w-md rounded-full">
-          <img className="max-w-full" src={me} alt="Me" />
+        <div className="max-w-sm rounded-full">
+          <img className="max-w-full" src={me} alt="My Avatar" />
         </div>
       </div>
       <div>

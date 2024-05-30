@@ -4,7 +4,7 @@ import className from "classnames";
 function Footer({ ...rest }) {
   const classes = className(
     rest.className,
-    "footer items-center p-4 bg-neutral text-neutral-content text-lg"
+    "footer items-center bg-neutral text-neutral-content text-lg"
   );
   return (
     <footer {...rest} className={classes}>

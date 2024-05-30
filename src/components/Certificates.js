@@ -23,9 +23,9 @@ function Certificate() {
   const renderedCerts = certs.map((item) => {
     return (
       <a href={item.url} key={item.name}>
-        <span className="max-w-40 m-4 hover:animate-pulse">
+        <div className="max-w-48 m-4">
           <img className="max-w-full" src={item.imageUrl} alt={item.name} />
-        </span>
+        </div>
       </a>
     );
   });
