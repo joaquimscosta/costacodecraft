@@ -34,7 +34,7 @@ function Contact() {
         Python, and Cloud Native technologies.
       </p>
       <p>
-        <h2>Email:</h2>
+        <h2>Email</h2>
         Have a cool project idea, want to collaborate, or just want to say hi?
         Drop me an email at{" "}
         <a href="mailto:joaquim@costacodecraft.com">
