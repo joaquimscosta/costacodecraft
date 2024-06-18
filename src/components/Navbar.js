@@ -5,7 +5,7 @@ import ThemeMode from "./ThemeMode";
 function Navbar() {
   const links = [
     { label: "Home", path: "/" },
-    { label: "Blog", path: "/blog" },
+    // { label: "Blog", path: "/blog" },
     { label: "About", path: "/about" },
     { label: "Projects", path: "/projects" },
     { label: "Contact", path: "/contact" },
