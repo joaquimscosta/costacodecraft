@@ -9,7 +9,7 @@ function Contact() {
         <h2>
           LinkedIn:{" "}
           <a
-            className="link link-info m-1"
+            className="link link-neutral m-1"
             href="https://www.linkedin.com/in/joaquimscosta"
           >
             joaquimscosta
@@ -23,7 +23,7 @@ function Contact() {
         <h2>
           GitHub:{" "}
           <a
-            className="link link-info m-1"
+            className="link link-neutral m-1"
             href="https://github.com/joaquimscosta"
           >
             joaquimscosta

@@ -41,7 +41,7 @@ function Blog() {
     return <PostCard {...item} />;
   });
   return (
-    <div className="flex flex-wrap justify-between gap-2 p-4 overflow-y-auto">
+    <div className="flex flex-wrap justify-normal gap-2 p-4 overflow-y-auto">
       {renderedPostList}
     </div>
   );

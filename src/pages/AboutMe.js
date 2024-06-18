@@ -17,7 +17,8 @@ function AboutMe() {
           recently as a Staff Software Engineer. I worked at Capgemini, between
           May 2023 to May 2024. Previously, I worked at General Electric where I
           was the Lead developer for the "Workflows" application and contributed
-          to the development of the most popular application platform.
+          to the development of the company's most widely used internal
+          application.
         </p>
         <p>
           My focus areas include Java, Kotlin, Spring Boot, DevOps, and Cloud
@@ -27,11 +28,10 @@ function AboutMe() {
         </p>
         <Certificate />
         <p>
-          I am proficient in multiple Azure services. In the past 7 years, I
-          have been deploying application in Azure (AKS), and I continue to
-          upskill in Azure AI Services, and Azure Machine Learning. In addition,
-          since last year (2023) I have immersed myself in the world of Python
-          programming.
+          I am proficient in multiple Azure services. In the past seven years, I
+          have been deploying applications in Azure (AKS), and I continue to
+          upskill in Azure AI Services. In addition, since last year (2023), I
+          have immersed myself in the world of Android and mobile development.
         </p>
         <p>
           When I am not programming, I enjoy traveling, automating my house,
