@@ -1,5 +1,5 @@
 import React from "react";
-import me from "../assets/images/me-avatar.png";
+import me from "../assets/images/me-avatar.jpg";
 
 export default function Avatar() {
   return (
