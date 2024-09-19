@@ -14,5 +14,11 @@ resource "azurerm_linux_web_app" "app" {
   service_plan_id     = azurerm_service_plan.plan.id
   tags                = var.common_tags
   site_config {
+    application_stack {
+      docker_image_name = var.docker_image_name
+      docker_registry_url = "https://index.docker.io"
+      docker_registry_username = "joaquimcosta"
+      docker_registry_password = "B&kSM4AMYQlP"
+    }
   }
 }
