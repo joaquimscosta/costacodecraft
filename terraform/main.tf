@@ -36,8 +36,8 @@ module "website" {
   location            = azurerm_resource_group.rg.location
 }
 
-module "binding" {
-  source              = "./modules/dns-binding"
+module "hostname" {
+  source              = "./modules/hostname"
   for_each            = var.custom_domain_names
   hostname            = each.value
   app_name            = module.website.app_name
@@ -46,6 +46,6 @@ module "binding" {
 
 module "certificate" {
   source              = "./modules/certificates"
-  for_each            = module.binding
+  for_each            = module.hostname
   hostname_binding_id = each.value.hostname_binding_id
 }

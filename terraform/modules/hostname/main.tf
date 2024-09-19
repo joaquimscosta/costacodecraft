@@ -1,4 +1,4 @@
-resource "azurerm_app_service_custom_hostname_binding" "binding" {
+resource "azurerm_app_service_custom_hostname_binding" "hostname" {
   hostname = var.hostname
   app_service_name = var.app_name
   resource_group_name = var.resource_group_name
