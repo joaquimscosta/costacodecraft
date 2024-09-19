@@ -1,4 +1,5 @@
 terraform {
+  required_version = ">= 1.0.0"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm",
@@ -14,26 +15,37 @@ provider "azurerm" {
   }
 }
 
-resource "azurerm_resource_group" "mywebrg" {
-  name     = "mywebrg"
+locals {
+  default_tags = merge(var.common_tags, {
+    app = var.app_name
+  })
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = var.resource_group_name
   location = "East US"
+  tags     = local.default_tags
 }
 
-resource "azurerm_service_plan" "plan" {
-  name                = "${var.app_name}-plan"
-  resource_group_name = azurerm_resource_group.mywebrg.name
-  location            = azurerm_resource_group.mywebrg.location
-  os_type             = "Linux"
-  sku_name            = "B1"
+module "website" {
+  source              = "./modules/website"
+  app_name            = var.app_name
+  common_tags         = local.default_tags
+  docker_image_name   = var.docker_image_name
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
 }
 
-resource "azurerm_linux_web_app" "app" {
-  name                = var.app_name
-  resource_group_name = azurerm_resource_group.mywebrg.name
-  location            = azurerm_resource_group.mywebrg.location
-  service_plan_id     = azurerm_service_plan.plan.id
+module "binding" {
+  source              = "./modules/dns-binding"
+  for_each            = var.custom_domain_names
+  hostname            = each.value
+  app_name            = module.website.app_name
+  resource_group_name = azurerm_resource_group.rg.name
+}
 
-  site_config {
-  }
-
+module "certificate" {
+  source              = "./modules/certificates"
+  for_each            = module.binding
+  hostname_binding_id = each.value.hostname_binding_id
 }
