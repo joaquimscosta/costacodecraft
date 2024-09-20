@@ -44,20 +44,37 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
 
+      - name: "Cache docker layers"
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{runner.os}}-buildx${{github.sha}}
+          restore-keys: |
+            ${{runner.os}}-buildx-
+      
+      - name: "Docker metadata"
+        id: meta
+        uses: docker/metadata-action@v5
+        with: 
+          images: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}
+        env:
+          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
+
       - name: Build and Export image
         uses: docker/build-push-action@v6
         with:
           file: ./docker/Dockerfile
           load: true
+          annotations: ${{steps.meta.outputs.annotations}}
           tags: |
-            ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
-            ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
+            latest
+            ${{ steps.meta.outputs.tags }}
 
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
+          image: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ steps.meta.outputs.tags }}
           fail-build: false
           severity-cutoff: high
 
@@ -70,4 +87,4 @@ jobs:
       - name: Publish container image
         run: |
           docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
-          docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
+          docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ steps.meta.outputs.tags }}
