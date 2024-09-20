@@ -2,6 +2,8 @@ name: Development
 on:
   push:
   pull_request:
+    
+  workflow_call:
 jobs:
   build:
     name: Build application
