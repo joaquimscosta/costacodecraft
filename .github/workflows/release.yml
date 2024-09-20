@@ -46,12 +46,6 @@ jobs:
         with: 
           images: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}
       
-      - name: "Print Testing"
-        run: |
-         echo "tags=${{steps.meta.outputs.tags}}"
-         echo "labels=${{steps.meta.outputs.labels}}"
-
-
       - name: Build and Export image
         uses: docker/build-push-action@v6
         with:
@@ -60,14 +54,14 @@ jobs:
           annotations: ${{ steps.meta.outputs.annotations }}
           labels: ${{steps.meta.outcome.labels}}
           tags: |
-            latest
+            ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
             ${{ steps.meta.outputs.tags }}
 
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ steps.meta.outputs.tags }}
+          image: ${{ steps.meta.outputs.tags }}
           fail-build: false
           severity-cutoff: high
 
@@ -80,7 +74,7 @@ jobs:
       - name: Publish container image
         run: |
           docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
-          docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ steps.meta.outputs.tags }}
+          docker push ${{ steps.meta.outputs.tags }}
   deploy:
     name: Deploy
     needs: [docker]
