@@ -7,7 +7,7 @@ on:
 env:
   DOCKER_IMAGE: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{github.repository}}
+  IMAGE_NAME: costacodecraft-ui
   VERSION: 04031988
 permissions:
   id-token: write
@@ -60,7 +60,6 @@ jobs:
           image: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
           fail-build: false
           severity-cutoff: high
-          acs-report-enable: true
 
       - name: Upload vulnerability report
         uses: github/codeql-action/upload-sarif@v2
@@ -69,4 +68,6 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
           
       - name: Publish container image
-        run: docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
+        run: |
+         docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
+         docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
