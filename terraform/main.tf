@@ -6,6 +6,12 @@ terraform {
       version = "~> 4.0"
     }
   }
+  cloud { 
+    organization = "joaquimcosta" 
+    workspaces { 
+      name = "costacodecraft-ui" 
+    } 
+  } 
 }
 
 provider "azurerm" {
