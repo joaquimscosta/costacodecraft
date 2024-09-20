@@ -5,10 +5,9 @@ on:
       - 'v*'
     branches: ['refactor_workflows']
 env:
-  DOCKER_IMAGE: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}
   REGISTRY: ghcr.io
   IMAGE_NAME: joaquimscosta/costacodecraft-ui
-  VERSION: 04031988
+  VERSION: 040319881
 permissions:
   id-token: write
   contents: read
@@ -48,7 +47,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{runner.os}}-buildx${{github.sha}}
+          key: ${{runner.os}}-buildx-${{github.sha}}
           restore-keys: |
             ${{runner.os}}-buildx-
       
@@ -68,18 +67,20 @@ jobs:
           annotations: ${{steps.meta.outputs.annotations}}
           tags: |
             latest
-            ${{ steps.meta.outputs.tags }}
+            ${{env.VERSION}}
+            # ${{ steps.meta.outputs.tags }}
 
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ steps.meta.outputs.tags }}
+          # image: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ steps.meta.outputs.tags }}
+          image: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
           fail-build: false
           severity-cutoff: high
 
       - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
