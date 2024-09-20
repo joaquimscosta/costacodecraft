@@ -2,7 +2,7 @@
 name: Build and Deploy container app to stage
 on:
   workflow_run:
-    workflows: ["Node.js CI"]
+    workflows: ["Development"]
     branches: [main]
     types: [completed]
 env:
