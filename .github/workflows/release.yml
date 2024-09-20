@@ -2,26 +2,26 @@ name: Release
 on:
   push:
     tags:
-      - "v*"
-    branches: ["refactor_workflows"]
+      - 'v*'
+    branches: ['refactor_workflows']
 env:
   DOCKER_IMAGE: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}
   REGISTRY: ghcr.io
-  IMAGE_NAME: costacodecraft-ui
+  IMAGE_NAME: joaquimscosta/costacodecraft-ui
   VERSION: 04031988
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  build: 
+  build:
     name: Build and Lint
     uses: ./.github/workflows/development.yml
 
   docker:
     name: Build Container
     needs: [build]
-    runs-on: "ubuntu-latest"
+    runs-on: 'ubuntu-latest'
     permissions:
       contents: read
       packages: write
@@ -36,7 +36,7 @@ jobs:
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
-      
+
       - name: Log in to registry
         uses: docker/login-action@v3
         with:
@@ -50,8 +50,8 @@ jobs:
           file: ./docker/Dockerfile
           load: true
           tags: |
-                ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
-                ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
+            ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
+            ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
 
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
@@ -66,8 +66,8 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
-          
+
       - name: Publish container image
         run: |
-         docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
-         docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
+          docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
+          docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:${{ env.VERSION }}
