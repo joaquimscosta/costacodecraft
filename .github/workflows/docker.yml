@@ -1,6 +1,9 @@
 name: Build Docker Container
 on:
   workflow_call: 
+    outputs:
+      DOCKER_IMAGE:
+        value: ${{ jobs.docker.outputs.DOCKER_IMAGE }}
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: joaquimscosta/costacodecraft-ui
