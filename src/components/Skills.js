@@ -1,8 +1,8 @@
-import skills from "../data/skills.json";
+import skills from '../data/skills.json'
 function Skills() {
   const listOfSkills = skills
     .filter((skill) => {
-      return skill.active;
+      return skill.active
     })
     .map((skill) => {
       return (
@@ -13,14 +13,14 @@ function Skills() {
         >
           {skill.name}
         </span>
-      );
-    });
+      )
+    })
   return (
     <section>
       <h2 className="text-3xl font-light">Skills</h2>
       <p className="flex flex-wrap justify-start gap-1">{listOfSkills}</p>
     </section>
-  );
+  )
 }
 
-export default Skills;
+export default Skills

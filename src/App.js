@@ -3,14 +3,14 @@ import {
   Route,
   createRoutesFromElements,
   RouterProvider,
-} from "react-router-dom";
+} from 'react-router-dom'
 
-import Home from "./pages/Home";
-import AboutMe from "./pages/AboutMe";
-import Blog from "./pages/Blog";
-import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
-import RootLayout from "./layouts/RootLayout";
+import Home from './pages/Home'
+import AboutMe from './pages/AboutMe'
+import Blog from './pages/Blog'
+import Projects from './pages/Projects'
+import Contact from './pages/Contact'
+import RootLayout from './layouts/RootLayout'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,9 +22,9 @@ const router = createBrowserRouter(
       <Route path="contact" element={<Contact />} />
     </Route>
   )
-);
+)
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }
-export default App;
+export default App

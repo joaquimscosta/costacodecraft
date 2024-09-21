@@ -1,5 +1,5 @@
-import React from "react";
-import me from "../assets/images/me-avatar.jpg";
+import React from 'react'
+import me from '../assets/images/me-avatar.jpg'
 
 export default function Avatar() {
   return (
@@ -15,5 +15,5 @@ export default function Avatar() {
         {/* <h3 className="text-xl avatar-company">Capgemini</h3> */}
       </div>
     </div>
-  );
+  )
 }

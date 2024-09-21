@@ -1,11 +1,11 @@
-import SocialMedia from "./SocialMedia";
-import className from "classnames";
+import SocialMedia from './SocialMedia'
+import className from 'classnames'
 
 function Footer({ ...rest }) {
   const classes = className(
     rest.className,
-    "footer items-center bg-neutral text-neutral-content text-lg"
-  );
+    'footer items-center bg-neutral text-neutral-content text-lg'
+  )
   return (
     <footer {...rest} className={classes}>
       <aside className="items-center grid-flow-col">
@@ -25,7 +25,7 @@ function Footer({ ...rest }) {
       </aside>
       <SocialMedia className="grid-flow-col gap-4 md:place-self-center md:justify-self-end" />
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

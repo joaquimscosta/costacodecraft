@@ -1,13 +1,5 @@
-import { FaRegBookmark } from "react-icons/fa6";
-function PostCard({
-  title,
-  coverUrl,
-  description,
-  publishDate,
-  readTime,
-  linkUrl,
-  className,
-}) {
+import { FaRegBookmark } from 'react-icons/fa6'
+function PostCard({ title, coverUrl, description, linkUrl }) {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -28,7 +20,7 @@ function PostCard({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default PostCard;
+export default PostCard

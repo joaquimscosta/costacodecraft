@@ -1,37 +1,37 @@
-import React, { useState, useEffect, useCallback } from "react";
-import classNames from "classnames";
+import React, { useState, useEffect, useCallback } from 'react'
+import classNames from 'classnames'
 
 function ThemeMode({ ...rest }) {
   const osThemePreferenceIsDark = window.matchMedia(
-    "(prefers-color-scheme: dark"
-  ).matches;
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+    '(prefers-color-scheme: dark'
+  ).matches
+  const [theme, setTheme] = useState(localStorage.getItem('theme'))
   const selectedTheme = useCallback(() => {
     if (theme) {
-      return theme;
+      return theme
     } else if (osThemePreferenceIsDark) {
-      return "dark";
+      return 'dark'
     } else {
-      return "light";
+      return 'light'
     }
-  }, [theme, osThemePreferenceIsDark]);
+  }, [theme, osThemePreferenceIsDark])
 
   useEffect(() => {
-    const theme = selectedTheme();
-    document.body.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [selectedTheme]);
+    const theme = selectedTheme()
+    document.body.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [selectedTheme])
 
   const handleChange = () => {
-    const toggle = theme === "light" ? "dark" : "light";
-    setTheme(toggle);
-  };
-  const classes = classNames(rest.className, "swap swap-rotate");
+    const toggle = theme === 'light' ? 'dark' : 'light'
+    setTheme(toggle)
+  }
+  const classes = classNames(rest.className, 'swap swap-rotate')
   return (
     <label {...rest} className={classes}>
       <input
         type="checkbox"
-        checked={selectedTheme() === "light"}
+        checked={selectedTheme() === 'light'}
         className="theme-controller"
         onChange={handleChange}
       />
@@ -50,7 +50,7 @@ function ThemeMode({ ...rest }) {
         <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
       </svg>
     </label>
-  );
+  )
 }
 
-export default ThemeMode;
+export default ThemeMode
