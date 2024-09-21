@@ -1,9 +1,11 @@
-name: "Terraform Plan"
+name: "Terraform Apply"
 
 on:
   push: 
     tags: 
       - "v*"
+    branches:
+      - main
 
 env:
   TF_CLOUD_ORGANIZATION: "joaquimcosta"
