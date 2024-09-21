@@ -31,6 +31,7 @@ jobs:
     needs: [docker]
     with:
       docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
+    secrets: inherit
   
   terraform-apply:
     name: Terraform Apply
@@ -38,4 +39,5 @@ jobs:
     needs: [docker, terraform-plan]
     with:
       docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
+    secrets: inherit
  
