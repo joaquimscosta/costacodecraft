@@ -11,6 +11,10 @@ env:
   IMAGE_NAME: joaquimscosta/costacodecraft-ui
 permissions:
   id-token: write
+  contents: read
+  packages: write
+  security-events: write
+  
 
 jobs:
   build:
