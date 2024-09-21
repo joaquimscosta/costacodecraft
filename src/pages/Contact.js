@@ -7,7 +7,7 @@ function Contact() {
       </p>
       <p>
         <h2>
-          LinkedIn:{" "}
+          LinkedIn:{' '}
           <a
             className="link link-info m-1"
             href="https://www.linkedin.com/in/joaquimscosta"
@@ -21,7 +21,7 @@ function Contact() {
       </p>
       <p>
         <h2>
-          GitHub:{" "}
+          GitHub:{' '}
           <a
             className="link link-info m-1"
             href="https://github.com/joaquimscosta"
@@ -36,13 +36,13 @@ function Contact() {
       <p>
         <h2>Email</h2>
         Have a cool project idea, want to collaborate, or just want to say hi?
-        Drop me an email at{" "}
+        Drop me an email at{' '}
         <a href="mailto:joaquim@costacodecraft.com">
           joaquim@costacodecraft.com
         </a>
       </p>
     </div>
-  );
+  )
 }
 
-export default Contact;
+export default Contact

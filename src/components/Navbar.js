@@ -1,15 +1,15 @@
-import { NavLink } from "react-router-dom";
-import { HiMenuAlt1 } from "react-icons/hi";
-import ThemeMode from "./ThemeMode";
+import { NavLink } from 'react-router-dom'
+import { HiMenuAlt1 } from 'react-icons/hi'
+import ThemeMode from './ThemeMode'
 
 function Navbar() {
   const links = [
-    { label: "Home", path: "/" },
+    { label: 'Home', path: '/' },
     // { label: "Blog", path: "/blog" },
-    { label: "About", path: "/about" },
-    { label: "Projects", path: "/projects" },
-    { label: "Contact", path: "/contact" },
-  ];
+    { label: 'About', path: '/about' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Contact', path: '/contact' },
+  ]
   const renderedNavbarLinks = links.map((link) => {
     return (
       <NavLink
@@ -19,16 +19,16 @@ function Navbar() {
       >
         {link.label}
       </NavLink>
-    );
-  });
+    )
+  })
 
   const renderedDropdownMenuLinks = links.map((link) => {
     return (
       <li key={link.label}>
         <NavLink to={link.path}>{link.label}</NavLink>
       </li>
-    );
-  });
+    )
+  })
 
   return (
     <nav className="navbar bg-neutral text-neutral-content">
@@ -54,7 +54,7 @@ function Navbar() {
         <ThemeMode className="btn btn-ghost" />
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

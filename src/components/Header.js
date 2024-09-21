@@ -1,9 +1,9 @@
-import classNames from "classnames";
-import Navbar from "./Navbar";
-import PageTitle from "./PageTitle";
+import classNames from 'classnames'
+import Navbar from './Navbar'
+import PageTitle from './PageTitle'
 
 function Header({ ...rest }) {
-  const classes = classNames(rest.className, "header");
+  const classes = classNames(rest.className, 'header')
   return (
     <>
       <header {...rest} className={classes}>
@@ -14,7 +14,7 @@ function Header({ ...rest }) {
       </header>
       <PageTitle />
     </>
-  );
+  )
 }
 
-export default Header;
+export default Header

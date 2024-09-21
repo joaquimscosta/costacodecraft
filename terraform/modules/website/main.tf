@@ -16,9 +16,7 @@ resource "azurerm_linux_web_app" "app" {
   site_config {
     application_stack {
       docker_image_name = var.docker_image_name
-      docker_registry_url = "https://index.docker.io"
-      docker_registry_username = "joaquimcosta"
-      docker_registry_password = "B&kSM4AMYQlP"
+      docker_registry_url = "https://ghcr.io"
     }
   }
 }
