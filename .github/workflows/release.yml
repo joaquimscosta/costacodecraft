@@ -34,8 +34,8 @@ jobs:
       docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
   
   terraform-apply:
-    name: Terraform Plan
-    uses: ./.github/workflows/terraform-plan.yml
+    name: Terraform Apply
+    uses: ./.github/workflows/terraform-apply.yml
     needs: [docker, terraform-plan]
     with:
       docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
