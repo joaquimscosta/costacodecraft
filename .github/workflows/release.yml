@@ -1,4 +1,4 @@
-name: Build Docker and Terraform Plan
+name: Release
 on:
   push:
     tags:
@@ -17,150 +17,20 @@ jobs:
     uses: ./.github/workflows/development.yml
 
   docker:
-    name: Build Container
-    needs: [build]
-    runs-on: 'ubuntu-latest'
-    permissions:
-      contents: read
-      packages: write
-      security-events: write
-    outputs:
-      DOCKER_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Extract tag name
-        id: extract_tag
-        run: |
-          TAG_NAME=${GITHUB_REF#refs/tags/}
-          if [[ "$TAG_NAME" == v* ]]; then
-            echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-          else
-            echo "TAG_NAME=test" >> $GITHUB_ENV
-          fi
-
-      - name: Print Var
-        run: echo "TAG_NAME = ${{ env.TAG_NAME }}"  
-
-      - name: Log in to registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{env.REGISTRY}}
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
-
-      - name: "Docker metadata"
-        id: meta
-        uses: docker/metadata-action@v5
-        with: 
-          images: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}
-      
-      - name: Build and Export image
-        uses: docker/build-push-action@v6
-        with:
-          file: ./docker/Dockerfile
-          load: true
-          annotations: ${{ steps.meta.outputs.annotations }}
-          labels: ${{steps.meta.outcome.labels}}
-          tags: |
-            ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
-
-      - name: OCI image vulnerability scanning
-        uses: anchore/scan-action@v3
-        id: scan
-        with:
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
-          fail-build: false
-          severity-cutoff: high
-
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v3
-        if: success() || failure()
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
-
-      - name: Publish container image
-        if: github.event_name != 'pull_request'
-        run: |
-          docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
-
-  terraform:
-    name: "Terraform Plan"
-    runs-on: ubuntu-latest
+    name: Docker
+    uses: ./.github/workflows/docker.yml
+  
+  terraform-plan:
+    name: Terraform Plan
+    uses: ./.github/workflows/terraform-plan.yml
     needs: [docker]
-    if: github.event_name != 'pull_request'
-    permissions:
-      contents: read
-      pull-requests: write
-    env:
-      TF_CLOUD_ORGANIZATION: "joaquimcosta"
-      TF_API_TOKEN: "${{secrets.TF_API_TOKEN}}"
-      TF_WORKSPACE: "costacodecraft-ui"
-      TF_VAR_docker_image_name: "\"${{needs.docker.outputs.DOCKER_IMAGE}}\""
-      CONFIG_DIRECTORY: "./terraform"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Upload Configuration
-        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.3.1
-        id: plan-upload
-        with:
-          workspace: ${{ env.TF_WORKSPACE }}
-          directory: ${{ env.CONFIG_DIRECTORY }}
-          speculative: true
-
-      - name: Create Plan Run
-        uses: hashicorp/tfc-workflows-github/actions/create-run@v1.3.1
-        id: plan-run
-        with:
-          workspace: ${{ env.TF_WORKSPACE }}
-          configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
-          plan_only: true
-
-      - name: Get Plan Output
-        uses: hashicorp/tfc-workflows-github/actions/plan-output@v1.3.1
-        id: plan-output
-        with:
-          plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
-
-      # - name: Update PR
-      #   uses: actions/github-script@v7
-      #   id: plan-comment
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     script: |
-      #       // 1. Retrieve existing bot comments for the PR
-      #       const { data: comments } = await github.rest.issues.listComments({
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         issue_number: context.issue.number,
-      #       });
-      #       const botComment = comments.find(comment => {
-      #         return comment.user.type === 'Bot' && comment.body.includes('Terraform Cloud Plan Output')
-      #       });
-      #       const output = `#### Terraform Cloud Plan Output
-      #          \`\`\`
-      #          Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
-      #          \`\`\`
-      #          [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
-      #          `;
-      #       // 3. Delete previous comment so PR timeline makes sense
-      #       if (botComment) {
-      #         github.rest.issues.deleteComment({
-      #           owner: context.repo.owner,
-      #           repo: context.repo.repo,
-      #           comment_id: botComment.id,
-      #         });
-      #       }
-      #       github.rest.issues.createComment({
-      #         issue_number: context.issue.number,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         body: output
-      #       });
+    with:
+      docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
+  
+  terraform-apply:
+    name: Terraform Plan
+    uses: ./.github/workflows/terraform-plan.yml
+    needs: [docker, terraform-plan]
+    with:
+      docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
+ 
