@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - 'v*'
+    branches: ["test_actions"]
   pull_request:
 env:
   REGISTRY: ghcr.io
@@ -24,12 +25,17 @@ jobs:
       packages: write
       security-events: write
     outputs:
-      DOCKER_IMAGE: ${{ steps.meta.outputs.tags }}
+      DOCKER_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
     steps:
       - uses: actions/checkout@v3
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Extract tag name
+        id: extract_tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+ 
 
       - name: Log in to registry
         uses: docker/login-action@v3
@@ -53,13 +59,13 @@ jobs:
           labels: ${{steps.meta.outcome.labels}}
           tags: |
             ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
-            ${{ steps.meta.outputs.tags }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
 
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ steps.meta.outputs.tags }}
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
           fail-build: false
           severity-cutoff: high
 
@@ -73,7 +79,7 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           docker push ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
-          docker push ${{ steps.meta.outputs.tags }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}
 
   terraform:
     name: "Terraform Plan"
