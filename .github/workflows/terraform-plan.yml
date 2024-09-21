@@ -4,13 +4,17 @@ on:
     inputs:
       docker_image:
         required: true
-        type: string 
+        type: string
+    secrets:
+      tf_api_token:
+        required: true
+      
 permissions:
   id-token: write
 env:
   TF_CLOUD_ORGANIZATION: "joaquimcosta"
-  TF_API_TOKEN: "${{secrets.TF_API_TOKEN}}"
   TF_WORKSPACE: "costacodecraft-ui"
+  TF_API_TOKEN: "${{secrets.tf_api_token}}"
   TF_VAR_docker_image_name: "\"${{inputs.docker_image}}\""
   CONFIG_DIRECTORY: "./terraform"
 jobs:

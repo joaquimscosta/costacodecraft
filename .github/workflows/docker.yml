@@ -1,12 +1,21 @@
 name: Build Docker Container
 on:
-  workflow_call: 
+  workflow_call:
+    inputs:
+      registry:
+        required: true
+        type: string
+        default: "ghcr.io"
+      image_name:
+        required: true
+        type: string
+        default: "joaquimscosta/costacodecraft-ui"
     outputs:
       DOCKER_IMAGE:
         value: ${{ jobs.docker.outputs.DOCKER_IMAGE }}
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: joaquimscosta/costacodecraft-ui
+  REGISTRY: ${{inputs.registry}}
+  IMAGE_NAME: ${{inputs.image_name}}
 permissions:
   id-token: write
 
