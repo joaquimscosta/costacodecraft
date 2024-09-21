@@ -34,8 +34,16 @@ jobs:
 
       - name: Extract tag name
         id: extract_tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
- 
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          if [[ "$TAG_NAME" == v* ]]; then
+            echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          else
+            echo "TAG_NAME=test" >> $GITHUB_ENV
+          fi
+
+      - name: Print Var
+        run: echo "TAG_NAME = ${{ env.TAG_NAME }}"  
 
       - name: Log in to registry
         uses: docker/login-action@v3
