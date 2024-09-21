@@ -3,7 +3,6 @@ on:
   push:
     tags:
       - 'v*'
-    branches: ['refactor_workflows']
   pull_request:
 env:
   REGISTRY: ghcr.io
