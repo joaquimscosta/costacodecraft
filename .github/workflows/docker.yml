@@ -52,7 +52,7 @@ jobs:
             echo "TAG_NAME=test" >> $GITHUB_ENV
           fi
 
-      - name: Print tag name
+      - name: Print tag
         run: echo "TAG_NAME = ${{ env.TAG_NAME }}"  
 
       - name: Log in to registry

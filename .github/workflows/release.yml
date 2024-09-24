@@ -25,13 +25,10 @@ jobs:
       run: |
         if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
           echo "environment=production" >> $GITHUB_ENV
-          echo "::set-output name=environment::production"
         elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
           echo "environment=staging" >> $GITHUB_ENV
-          echo "::set-output name=environment::staging"
         else
           echo "environment=development" >> $GITHUB_ENV
-          echo "::set-output name=environment::development"
         fi
   build:
     name: Build and Lint
