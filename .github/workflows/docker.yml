@@ -2,6 +2,10 @@ name: Build Docker Container
 on:
   workflow_call:
     inputs:
+      environment:
+        required: true
+        type: string
+        default: "development"
       registry:
         required: true
         type: string
@@ -11,6 +15,8 @@ on:
         type: string
         default: "joaquimscosta/costacodecraft-ui"
     outputs:
+      ENVIRONMENT:
+        value: ${{ inputs.environment }}
       DOCKER_IMAGE:
         value: ${{ jobs.docker.outputs.DOCKER_IMAGE }}
 env:
@@ -21,6 +27,7 @@ permissions:
 
 jobs:
   docker:
+    environment: ${{ inputs.environment }}
     name: Build Container
     runs-on: 'ubuntu-latest'
     permissions:
@@ -45,7 +52,7 @@ jobs:
             echo "TAG_NAME=test" >> $GITHUB_ENV
           fi
 
-      - name: Print Var
+      - name: Print tag
         run: echo "TAG_NAME = ${{ env.TAG_NAME }}"  
 
       - name: Log in to registry

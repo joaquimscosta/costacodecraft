@@ -14,6 +14,22 @@ permissions:
   pull-requests: write
 
 jobs:
+  set-environment:
+    name: Set Environment Type
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.set-env.outputs.environment }}
+    steps:
+    - name: Determine Environment Type
+      id: set-env
+      run: |
+        if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+          echo "environment=production" >> $GITHUB_ENV
+        elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+          echo "environment=staging" >> $GITHUB_ENV
+        else
+          echo "environment=development" >> $GITHUB_ENV
+        fi
   build:
     name: Build and Lint
     uses: ./.github/workflows/development.yml
@@ -21,7 +37,9 @@ jobs:
   docker:
     name: Docker
     uses: ./.github/workflows/docker.yml
+    needs: [set-environment]
     with:
+      environment: ${{ needs.set-environment.outputs.environment }}
       registry: ghcr.io
       image_name: joaquimscosta/costacodecraft-ui
   
@@ -29,7 +47,7 @@ jobs:
     name: Terraform Plan
     uses: ./.github/workflows/terraform-plan.yml
     needs: [docker]
-    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
+    if: needs.docker.outputs.environment == 'production'
     with:
       docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
     secrets: inherit
