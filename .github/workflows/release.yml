@@ -40,8 +40,8 @@ jobs:
     name: Docker
     uses: ./.github/workflows/docker.yml
     needs: [set-environment]
-    environment: ${{ needs.set-environment.outputs.environment }}
     with:
+      environment: ${{ needs.set-environment.outputs.environment }}
       registry: ghcr.io
       image_name: joaquimscosta/costacodecraft-ui
   
@@ -49,8 +49,7 @@ jobs:
     name: Terraform Plan
     uses: ./.github/workflows/terraform-plan.yml
     needs: [docker]
-    # if: needs.set-environment.outputs.environment == 'production'
-    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
+    if: needs.docker.outputs.environment == 'production'
     with:
       docker_image: ${{ needs.docker.outputs.DOCKER_IMAGE }}
     secrets: inherit
