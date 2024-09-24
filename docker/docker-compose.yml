@@ -1,9 +1,9 @@
-version: "3.8"
+version: '3.8'
 services:
   app:
     container_name: costacodecraft-webui
-    image: costacodecraft-webui:1.0.0
+    image: ghcr.io/joaquimscosta/costacodecraft-ui:latest
     build:
       context: .
     ports:
-      - "8080:80"
+      - '8080:80'

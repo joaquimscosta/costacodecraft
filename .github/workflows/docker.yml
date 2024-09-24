@@ -5,15 +5,15 @@ on:
       environment:
         required: true
         type: string
-        default: "development"
+        default: 'development'
       registry:
         required: true
         type: string
-        default: "ghcr.io"
+        default: 'ghcr.io'
       image_name:
         required: true
         type: string
-        default: "joaquimscosta/costacodecraft-ui"
+        default: 'joaquimscosta/costacodecraft-ui'
     outputs:
       ENVIRONMENT:
         value: ${{ inputs.environment }}
@@ -53,7 +53,7 @@ jobs:
           fi
 
       - name: Print tag
-        run: echo "TAG_NAME = ${{ env.TAG_NAME }}"  
+        run: echo "TAG_NAME = ${{ env.TAG_NAME }}"
 
       - name: Log in to registry
         uses: docker/login-action@v3
@@ -62,12 +62,12 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
 
-      - name: "Docker metadata"
+      - name: 'Docker metadata'
         id: meta
         uses: docker/metadata-action@v5
-        with: 
+        with:
           images: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}
-      
+
       - name: Build and Export image
         uses: docker/build-push-action@v6
         with:
