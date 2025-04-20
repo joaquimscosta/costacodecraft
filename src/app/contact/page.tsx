@@ -3,7 +3,7 @@ export default function Contact() {
     <div className='prose md:prose-2xl contact flex-1 overflow-y-auto p-4'>
       <p>
         Thank you for visiting my page! I truly appreciate your interest. If
-        you'd like to connect, please use the channels below:
+        you&apos;d like to connect, please use the channels below:
       </p>
 
       <h2>
@@ -17,7 +17,7 @@ export default function Contact() {
       </h2>
       <p>
         Explore my professional background on LinkedIn. I typically accept
-        connection requests from individuals I've interacted with in some
+        connection requests from individuals I&apos;ve interacted with in some
         capacity. Feel free to send an InMail message as well.
       </p>
 

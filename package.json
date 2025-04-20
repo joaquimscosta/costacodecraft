@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint --fix 'src/**/*.{js,jsx}'",
-    "format": "npx prettier --write 'src/**/*.{js,jsx,css,md}' --config ./.prettierrc.json --log-level 'warn'"
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format": "npx prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.json --log-level warn"
   },
   "dependencies": {
     "classnames": "^2.5.1",

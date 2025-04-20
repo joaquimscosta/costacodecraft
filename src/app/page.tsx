@@ -6,7 +6,7 @@ export default function Home() {
       <div className='hero'>
         <div className='hero-content text-center'>
           <div className='max-w-lg'>
-            <h2 className='text-6xl font-bold'>👋 Hi, I'm Joaquim.</h2>
+            <h2 className='text-6xl font-bold'>👋 Hi, I&apos;m Joaquim.</h2>
             <h3 className='text-4xl font-thin'>Software Engineer</h3>
             <p className='read-more py-6 text-2xl tracking-wide'>
               Always Meeting End-User Requirements With Innovation. Read more

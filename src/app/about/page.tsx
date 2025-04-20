@@ -13,12 +13,12 @@ export default function AboutMe() {
         <p>
           Hello! I am Joaquim Costa. I am an avid Software Engineer who
           specializes in building cloud native, resilient and secure
-          application. I've been developing software for over 13 years, most
-          recently as a Staff Software Engineer. I worked at Capgemini, between
-          May 2023 to May 2024. Previously, I worked at General Electric where I
-          was the Lead developer for the "Workflows" application and contributed
-          to the development of the company's most widely used internal
-          application.
+          application. I&apos;ve been developing software for over 13 years,
+          most recently as a Staff Software Engineer. I worked at Capgemini,
+          between May 2023 to May 2024. Previously, I worked at General Electric
+          where I was the Lead developer for the &quot;Workflows&quot;
+          application and contributed to the development of the company&apos;s
+          most widely used internal application.
         </p>
         <p>
           My focus areas include Java, Kotlin, Spring Boot, DevOps, and Cloud

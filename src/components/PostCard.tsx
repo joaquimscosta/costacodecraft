@@ -1,9 +1,23 @@
+import Image from 'next/image';
 import { FaRegBookmark } from 'react-icons/fa6';
-export default function PostCard({ title, coverUrl, description, linkUrl }) {
+
+interface PostCardProps {
+  title: string;
+  coverUrl: string;
+  description: string;
+  linkUrl: string;
+}
+
+export default function PostCard({
+  title,
+  coverUrl,
+  description,
+  linkUrl,
+}: PostCardProps) {
   return (
     <div className='card bg-base-100 w-96 shadow-xl'>
       <figure>
-        <img src={coverUrl} alt='Post Cover' />
+        <Image src={coverUrl} alt='Post Cover' />
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>

@@ -1,7 +1,5 @@
 import classNames from 'classnames';
 import Navbar from './Navbar';
-import PageTitle from './PageTitle';
-
 export default function Header({ ...rest }) {
   const classes = classNames(rest.className, 'header');
   return (
@@ -12,7 +10,6 @@ export default function Header({ ...rest }) {
         </h1> */}
         <Navbar />
       </header>
-      <PageTitle />
     </>
   );
 }

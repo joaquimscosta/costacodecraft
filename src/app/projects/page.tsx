@@ -1,5 +1,5 @@
 function Projects() {
-  return <div className="flex-1 p-4 overflow-y-auto projects">Projects</div>
+  return <div className='projects flex-1 overflow-y-auto p-4'>Projects</div>;
 }
 
-export default Projects
+export default Projects;
