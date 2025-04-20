@@ -1,7 +1,7 @@
-import Certificate from '../../components/Certificates';
-import Avatar from '../../components/Avatar';
-import Skills from '../../components/Skills';
-import Sidebar from '../../components/Sidebar';
+import Certificate from '@components/Certificates';
+import Avatar from '@components/Avatar';
+import Skills from '@components/Skills';
+import Sidebar from '@components/Sidebar';
 
 export default function AboutMe() {
   return (
