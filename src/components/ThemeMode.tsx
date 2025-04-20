@@ -3,12 +3,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 
+type Theme = 'light' | 'dark' | null;
+
 export default function ThemeMode({ ...rest }) {
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState<Theme>(null);
   const [osThemePreferenceIsDark, setOsThemePreferenceIsDark] = useState(false);
 
   useEffect(() => {
-    setTheme(localStorage.getItem('theme'));
+    const storedTheme = localStorage.getItem('theme') as Theme;
+    setTheme(storedTheme);
     setOsThemePreferenceIsDark(
       window.matchMedia('(prefers-color-scheme: dark)').matches,
     );
