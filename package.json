@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint --fix \"src/**/*.{js,jsx}\"",
-    "format": "prettier --write \"src/**/*.{js,jsx,css,md}\" --config ./.prettierrc.json"
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx}'",
+    "format": "npx prettier --write 'src/**/*.{js,jsx,css,md}' --config ./.prettierrc.json --log-level 'warn'"
   },
   "dependencies": {
     "classnames": "^2.5.1",
@@ -28,6 +28,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "eslint-config-prettier": "^10.1.2",
+    "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4",
     "typescript": "^5"
