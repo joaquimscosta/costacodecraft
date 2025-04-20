@@ -1,9 +1,9 @@
-version: '3.8'
 services:
   app:
-    container_name: costacodecraft-webui
-    image: ghcr.io/joaquimscosta/costacodecraft-ui:latest
+    container_name: costacodecraft-ui
+    image: costacodecraft-ui:latest
     build:
-      context: .
+      context: ..
+      dockerfile: docker/Dockerfile
     ports:
-      - '8080:80'
+      - '8080:3000'
