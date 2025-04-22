@@ -1,6 +1,5 @@
 import Link from 'next/link';
-
-export default function Home() {
+export default function Hero() {
   return (
     <div className='greeting flex-1 self-center overflow-y-auto p-4'>
       <div className='hero'>

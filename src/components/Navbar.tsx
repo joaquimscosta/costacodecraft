@@ -1,10 +1,11 @@
 import { HiMenuAlt1 } from 'react-icons/hi';
 import ThemeMode from './ThemeMode';
 import Link from 'next/link';
+import Logo from './Logo';
 
 export default function Navbar() {
   const links = [
-    { label: 'Home', path: '/' },
+    // { label: 'Home', path: '/' },
     // { label: "Blog", path: "/blog" },
     { label: 'About', path: '/about' },
     { label: 'Projects', path: '/projects' },
@@ -44,7 +45,11 @@ export default function Navbar() {
             {renderedDropdownMenuLinks}
           </ul>
         </div>
+        <div className='hidden lg:flex'>
+          <Logo />
+        </div>
       </div>
+
       <div className='navbar-center hidden lg:flex'>{renderedNavbarLinks}</div>
       <div className='navbar-end'>
         <ThemeMode className='btn btn-ghost' />

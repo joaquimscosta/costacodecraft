@@ -2,6 +2,7 @@ import az204 from '@assets/images/azure-developer-associate-600x600.png';
 import az400 from '@assets/images/azure-devops-engineer-expert-600x600.png';
 import dp420 from '@assets/images/azure-cosmosdb-developer.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Certificate() {
   const certs = [
@@ -23,11 +24,11 @@ export default function Certificate() {
   ];
   const renderedCerts = certs.map((item) => {
     return (
-      <a href={item.url} key={item.name}>
+      <Link href={item.url} key={item.name}>
         <div className='m-4 max-w-48'>
           <Image className='max-w-full' src={item.imageUrl} alt={item.name} />
         </div>
-      </a>
+      </Link>
     );
   });
   return <div className='flex justify-center gap-2'>{renderedCerts}</div>;

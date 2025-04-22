@@ -3,7 +3,7 @@ import Avatar from '@components/Avatar';
 import Skills from '@components/Skills';
 import Sidebar from '@components/Sidebar';
 
-export default function AboutMe() {
+export default function About() {
   return (
     <>
       <Sidebar className='w-full p-4 md:min-h-full md:w-64'>
