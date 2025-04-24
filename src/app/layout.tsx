@@ -52,7 +52,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${justSans.className} antialiased`}>
         <div className='flex min-h-screen flex-col'>
-          <Header className='w-full pb-4' />
+          <Header className='w-full' />
           <div className='flex flex-1 flex-col sm:flex-row md:mx-auto'>
             {children}
           </div>
