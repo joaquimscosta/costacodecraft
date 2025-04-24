@@ -7,7 +7,7 @@ export default function Skills() {
     .map((skill) => {
       return (
         <span
-          className='text-neutral bg-neutral-content rounded px-1.5 py-2 text-lg leading-4 font-semibold antialiased'
+          className='badge badge-soft badge-lg lg:badge-xl leading-4 font-semibold antialiased'
           key={skill.name}
           style={{ backgroundColor: skill.color }}
         >

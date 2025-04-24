@@ -3,10 +3,10 @@ import Avatar from '@components/Avatar';
 import Skills from '@components/Skills';
 import Sidebar from '@components/Sidebar';
 
-export default function AboutMe() {
+export default function About() {
   return (
     <>
-      <Sidebar className='w-full p-4 md:min-h-full md:w-64'>
+      <Sidebar className='mx-auto w-80 p-4 md:w-1/4'>
         <Avatar />
       </Sidebar>
       <article className='prose md:prose-2xl aboutme flex-1 overflow-y-auto p-4'>
