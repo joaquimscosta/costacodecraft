@@ -5,7 +5,7 @@ import Sidebar from '@components/Sidebar';
 
 export default function About() {
   return (
-    <>
+    <div className='flex flex-1 flex-col sm:flex-row md:mx-auto'>
       <Sidebar className='mx-auto w-80 p-4 md:w-1/4'>
         <Avatar />
       </Sidebar>
@@ -39,6 +39,6 @@ export default function About() {
         </p>
         <Skills />
       </article>
-    </>
+    </div>
   );
 }
