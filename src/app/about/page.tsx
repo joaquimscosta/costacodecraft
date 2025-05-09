@@ -1,7 +1,7 @@
-import Certificate from '@components/Certificates';
-import Avatar from '@components/Avatar';
-import Skills from '@components/Skills';
-import Sidebar from '@components/Sidebar';
+import Certificate from '@/components/Certificates';
+import Avatar from '@/components/Avatar';
+import Skills from '@/components/Skills';
+import Sidebar from '@/components/Sidebar';
 
 export default function About() {
   return (
@@ -9,7 +9,7 @@ export default function About() {
       <Sidebar className='mx-auto w-80 p-4 md:w-1/4'>
         <Avatar />
       </Sidebar>
-      <article className='prose md:prose-2xl aboutme flex-1 overflow-y-auto p-4'>
+      <article className='prose md:prose-2xl flex-1 overflow-y-auto p-4'>
         <p>
           Hello! I am Joaquim Costa. I am an avid Software Engineer who
           specializes in building cloud native, resilient and secure

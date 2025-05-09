@@ -1,5 +1,5 @@
-import Header from '@components/Header';
-import Footer from '@components/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { justSans } from '@/styles/fonts';
 import '@/styles/globals.css';
 import { Metadata } from 'next';

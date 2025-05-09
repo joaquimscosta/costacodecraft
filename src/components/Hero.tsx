@@ -1,22 +1,7 @@
 import Link from 'next/link';
+import { roketto } from '@/styles/fonts';
 
 export default function Hero() {
-  // return (
-  //   <div className='greeting hero flex-1 self-center overflow-y-auto'>
-  //     <div className='hero-content text-center'>
-  //       <div className='max-w-lg'>
-  //         <h2 className='pb-4 text-6xl font-bold'>👋 Hi, I&apos;m Joaquim.</h2>
-  //         <h3 className='text-4xl font-thin'>Software Engineer</h3>
-  //         <p className='read-more py-6 text-2xl tracking-wide'>
-  //           Always Meeting End-User Requirements With Innovation. Read more
-  //           <Link className='link link-info m-1' href='/about'>
-  //             about me
-  //           </Link>
-  //         </p>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
   return (
     <div className='bg-white'>
       <div className='relative'>
@@ -33,10 +18,14 @@ export default function Hero() {
 
             <div className='relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0'>
               <div className='mx-auto max-w-2xl lg:mx-0 lg:max-w-xl'>
-                <h1 className='pb-4 text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl'>
+                <h1
+                  className={`${roketto.className} pb-4 text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl`}
+                >
                   👋 Hi, I&apos;m Joaquim.
                 </h1>
-                <h3 className='text-3xl font-thin'>Staff Software Engineer</h3>
+                <h3 className='text-2xl font-thin sm:text-3xl'>
+                  Staff Software Engineer
+                </h3>
                 <p className='mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8'>
                   I build scalable, high-performance systems using Java, Kotlin,
                   and Spring Boot. I specialize in backend architecture,

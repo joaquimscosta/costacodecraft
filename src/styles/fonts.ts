@@ -10,4 +10,14 @@ const montblanc = localFont({
   variable: '--font-montblanc',
 });
 
-export { justSans, montblanc };
+const roketto = localFont({
+  src: '../assets/fonts/Roketto.ttf',
+  variable: '--font-roketto',
+});
+
+const guester = localFont({
+  src: '../assets/fonts/Guester.ttf',
+  variable: '--font-guester',
+});
+
+export { justSans, montblanc, roketto, guester };

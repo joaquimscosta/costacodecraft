@@ -1,5 +1,5 @@
 import React from 'react';
-import me from '@assets/images/me-avatar.jpg';
+import me from '@/assets/images/me-avatar.jpg';
 import Image from 'next/image';
 
 export default function Avatar() {
@@ -16,7 +16,6 @@ export default function Avatar() {
       <div className='pt-4'>
         <h2 className='avatar-name text-4xl font-thin'>Joaquim Costa</h2>
         <h3 className='text-2xl font-light'>Software Engineer</h3>
-        {/* <h3 className='text-xl'>Capgemini</h3> */}
       </div>
     </div>
   );

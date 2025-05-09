@@ -1,6 +1,6 @@
-import az204 from '@assets/images/azure-developer-associate-600x600.png';
-import az400 from '@assets/images/azure-devops-engineer-expert-600x600.png';
-import dp420 from '@assets/images/azure-cosmosdb-developer.png';
+import az204 from '@/assets/images/azure-developer-associate-600x600.png';
+import az400 from '@/assets/images/azure-devops-engineer-expert-600x600.png';
+import dp420 from '@/assets/images/azure-cosmosdb-developer.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
