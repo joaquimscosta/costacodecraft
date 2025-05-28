@@ -38,7 +38,7 @@
     { "name": "Azure AI Services", "active": true, "color": "#0089D6" }
   ],
   "Web Technologies": [
-    { "name": "JavaScript", "active": true, "color": "#F7DF1E" },
+    { "name": "JavaScript", "active": true, "color": "#B3A612" },
     { "name": "HTML", "active": true, "color": "#E34F26" },
     { "name": "CSS", "active": true, "color": "#1572B6" },
     { "name": "XML", "active": true, "color": "#0066CC" },

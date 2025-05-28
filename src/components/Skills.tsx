@@ -3,7 +3,7 @@ import skillsData from '../data/skills.json';
 import {
   CodeBracketIcon,
   WrenchScrewdriverIcon,
-  ServerStackIcon,
+  CircleStackIcon,
   Cog8ToothIcon,
   CloudIcon,
   GlobeAltIcon,
@@ -72,7 +72,7 @@ function getCategoryIcon(category: string): JSX.Element | null {
   const icons: Record<string, JSX.Element> = {
     Languages: <CodeBracketIcon className={iconClass} />,
     'Frameworks & Libraries': <WrenchScrewdriverIcon className={iconClass} />,
-    Databases: <ServerStackIcon className={iconClass} />,
+    Databases: <CircleStackIcon className={iconClass} />,
     'DevOps & Tools': <Cog8ToothIcon className={iconClass} />,
     'Cloud & Infrastructure': <CloudIcon className={iconClass} />,
     'Web Technologies': <GlobeAltIcon className={iconClass} />,

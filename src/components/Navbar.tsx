@@ -16,7 +16,7 @@ export default function Navbar() {
   const navigation = [
     { name: 'About', href: '/about', current: pathname === '/about' },
     { name: 'Projects', href: '/projects', current: pathname === '/projects' },
-    // { name: 'Blog', href: '/blog', current: pathname === '/blog' },
+    { name: 'Blog', href: '/blog', current: pathname === '/blog' },
     { name: 'Contact', href: '/contact', current: pathname === '/contact' },
   ];
   const mobileNavigationRender = navigation.map((item) => (

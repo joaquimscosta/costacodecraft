@@ -13,7 +13,7 @@ export default function Hero() {
               viewBox='0 0 100 100'
               preserveAspectRatio='none'
               aria-hidden='true'
-              className='absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block'
+              className='fill-base-100 absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform lg:block'
             >
               <polygon points='0,0 90,0 50,100 0,100' />
             </svg>
@@ -23,7 +23,7 @@ export default function Hero() {
                 <h1
                   className={`${roketto.className} pb-4 text-5xl font-semibold tracking-tight text-pretty sm:text-7xl`}
                 >
-                  Hi, I’m Joaquim.
+                  👋 Hi, I’m Joaquim.
                 </h1>
                 <h2 className='text-xl font-medium text-sky-600 sm:text-2xl'>
                   Staff Software Engineer · Backend Specialist
