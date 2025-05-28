@@ -8,8 +8,9 @@ export default function Projects() {
         <Image
           src={img1}
           alt='Page under construction'
+          quality={80}
           fill
-          className='object-cover'
+          className='object-cover object-top'
           placeholder='blur'
         />
       </div>
