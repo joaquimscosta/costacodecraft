@@ -21,7 +21,16 @@ export default function Navbar() {
     { name: 'Blog', href: '/blog', current: pathname === '/blog' },
     { name: 'Contact', href: '/contact', current: pathname === '/contact' },
   ];
-  const mobileNavigationRender = navigation.map((item) => (
+
+  const mobileNavigation = [
+    ...navigation,
+    {
+      name: 'Github Repo',
+      href: 'https://github.com/joaquimscosta/costacodecraft',
+      current: false,
+    },
+  ];
+  const mobileNavigationRender = mobileNavigation.map((item) => (
     <Link
       key={item.name}
       href={item.href}
@@ -30,7 +39,7 @@ export default function Navbar() {
         item.current
           ? 'bg-gray-900 text-white'
           : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-        'rounded-md px-3 py-2 text-sm font-medium',
+        'block rounded-md px-3 py-2 text-sm font-medium',
       )}
     >
       {item.name}
@@ -47,7 +56,7 @@ export default function Navbar() {
         item.current
           ? 'bg-gray-900 text-white'
           : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-        'block rounded-md px-3 py-2 text-base font-medium',
+        'rounded-md px-3 py-2 text-base font-medium',
       )}
     >
       {item.name}
@@ -78,7 +87,7 @@ export default function Navbar() {
               <Logo />
             </div>
             <div className='hidden sm:ml-6 sm:block'>
-              <div className='flex space-x-4'>{mobileNavigationRender}</div>
+              <div className='flex space-x-4'>{navigationRender}</div>
             </div>
           </div>
           <div className='absolute inset-y-0 right-0 flex items-center gap-1 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
@@ -88,7 +97,7 @@ export default function Navbar() {
         </div>
       </div>
       <DisclosurePanel className='sm:hidden'>
-        <div className='space-y-1 px-2 pt-2 pb-3'>{navigationRender}</div>
+        <div className='space-y-1 px-2 pt-2 pb-3'>{mobileNavigationRender}</div>
       </DisclosurePanel>
     </Disclosure>
   );
