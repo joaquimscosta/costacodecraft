@@ -17,7 +17,7 @@ export default function PostCard({
   return (
     <div className='card bg-base-100 w-96 shadow-xl'>
       <figure>
-        <Image src={coverUrl} alt='Post Cover' />
+        <Image src={coverUrl} fill alt='Post Cover' />
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>

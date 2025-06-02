@@ -5,9 +5,6 @@ export default function Header({ ...rest }) {
   return (
     <>
       <header {...rest} className={classes}>
-        {/* <h1 className="text-5xl lg:text-7xl font-bold brand">
-          Costa Code Craft
-        </h1> */}
         <Navbar />
       </header>
     </>

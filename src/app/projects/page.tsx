@@ -1,5 +1,5 @@
-function Projects() {
-  return <div className='projects flex-1 overflow-y-auto p-4'>Projects</div>;
-}
+import UnderConstructor from '@/components/under-construction';
 
-export default Projects;
+export default function Projects() {
+  return <UnderConstructor title='Project page is under construction' />;
+}

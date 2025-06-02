@@ -1,5 +1,5 @@
-import Header from '@components/Header';
-import Footer from '@components/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { justSans } from '@/styles/fonts';
 import '@/styles/globals.css';
 import { Metadata } from 'next';
@@ -53,10 +53,8 @@ export default function RootLayout({
       <body className={`${justSans.className} antialiased`}>
         <div className='flex min-h-screen flex-col'>
           <Header className='w-full' />
-          <div className='flex flex-1 flex-col sm:flex-row md:mx-auto'>
-            {children}
-          </div>
-          <Footer className='w-full justify-center p-4' />
+          {children}
+          <Footer className='w-full' />
         </div>
       </body>
     </html>
