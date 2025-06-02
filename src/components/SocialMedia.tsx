@@ -30,6 +30,7 @@ export default function SocialMedia({ ...rest }) {
           className='text-gray-400 hover:text-gray-300'
         >
           <span className='sr-only'>{item.name}</span>
+          {/* @ts-expect-error - React Icons function components don't accept className prop */}
           <item.icon aria-hidden='true' className='size-6' />
         </Link>
       ))}

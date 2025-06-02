@@ -1,6 +1,10 @@
 import img1 from '@/assets/images/under-construction.png';
 import Image from 'next/image';
-export default function UnderConstructor({ title }) {
+type UnderConstructorProps = {
+  title: string;
+};
+
+export default function UnderConstructor({ title }: UnderConstructorProps) {
   return (
     <>
       <div className='flex flex-1 flex-col sm:flex-row md:mx-auto'>
