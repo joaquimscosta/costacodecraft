@@ -19,8 +19,7 @@ export default function Contact() {
           </Link>
         </p>
         <p>
-          Explore my professional background, projects, and recommendations. I’m
-          open to connection requests and happy to chat via InMail.
+          Explore my professional background, projects, and recommendations.
         </p>
 
         <h2 className='mt-4'>GitHub</h2>

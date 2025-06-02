@@ -23,7 +23,7 @@ export default function Hero() {
                 <h1
                   className={`${roketto.className} pb-4 text-5xl font-semibold tracking-tight text-pretty sm:text-7xl`}
                 >
-                  👋 Hi, I’m Joaquim.
+                  Hi, I’m Joaquim.
                 </h1>
                 <h2 className='text-xl font-medium text-sky-600 sm:text-2xl'>
                   Staff Software Engineer · Backend Specialist

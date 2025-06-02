@@ -19,17 +19,17 @@ export default function About() {
         </p>
 
         <p>
-          I spent the majority of my career at <strong>General Electric</strong>
-          , where I advanced to Staff Software Engineer and served as the
-          backend lead for the company’s internal “Workflows” platform — one of
-          the most widely used systems across the organization. I played a
-          central role in modernizing the application from a monolith to
-          microservices, architecting and delivering robust backend solutions
-          that supported high availability and scalability.
+          I played a leading role at <strong>General Electric</strong> where I
+          steadily advanced to Staff Software Engineer, earning multiple
+          promotions based on impact. As the backend lead for the company’s
+          internal “Workflows” platform — one of the most widely used systems
+          across the organization. I collaborated on modernizing the application
+          from a monolith to microservices, designing and delivering robust
+          backend solutions that supported high availability and scalability.
         </p>
 
         <p>
-          My work at GE included leading the technical design, optimizing
+          My work at GE included leading technical design, optimizing
           performance, and implementing infrastructure improvements such as
           Docker-based local development environments. I also introduced CI/CD
           pipelines and improved test reliability to support faster, more
@@ -38,7 +38,7 @@ export default function About() {
 
         <p>
           Most recently, I worked at <strong>Kroger</strong> as an Advanced
-          Software Engineer. There, I helped standardize backend architecture,
+          Software Engineer. There, I standardized backend architecture,
           implemented RBAC security using OAuth2, and optimized CI/CD workflows
           with GitHub Actions. I led code review practices and championed
           OpenAPI adoption to align service development with platform-wide
@@ -47,7 +47,7 @@ export default function About() {
 
         <p>
           My time at <strong>Capgemini</strong> gave me additional exposure to
-          client-facing enterprise projects, but my core passion is building
+          client-facing enterprise projects. My core passion is building
           impactful backend systems and engineering infrastructure from within
           product-focused teams.
         </p>
@@ -56,15 +56,15 @@ export default function About() {
 
         <p>
           Over the past several years, I’ve worked extensively in Azure
-          (including AKS) and have recently been diving into Generative AI,
-          LLMs, and agentic systems—especially where they intersect with backend
+          (including AKS) and have also been diving into Generative AI, LLMs,
+          and agentic systems—especially where they intersect with backend
           development, developer tooling, and automation workflows.
         </p>
 
         <p>
           Outside of engineering, I enjoy traveling, automating my home, playing
           soccer (futebol), and dancing. I’m based in Rhode Island and always
-          open to collaboration, mentoring, or solving meaningful technical
+          open to collaboration, mentoring, and solving meaningful technical
           challenges.
         </p>
 
