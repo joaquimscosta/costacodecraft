@@ -21,7 +21,7 @@ export default function Skills() {
   return (
     <section className='mt-12'>
       <h2 className='mb-4 text-2xl font-semibold'>Technical Skills</h2>
-      <div className='space-y-6'>
+      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
         {Object.entries(skillsData).map(([category, skills]) => (
           <SkillCategory
             key={category}
@@ -39,7 +39,7 @@ function SkillCategory({ title, skills }: { title: string; skills: Skill[] }) {
 
   return (
     <div>
-      <h3 className='mb-2 flex items-center text-xl font-medium'>
+      <h3 className='flex items-center text-xl font-medium'>
         {getCategoryIcon(title)} {title}
       </h3>
       <div className='flex flex-wrap gap-2'>
@@ -67,7 +67,7 @@ function SkillBadge({ skill }: { skill: Skill }) {
 }
 
 function getCategoryIcon(category: string): JSX.Element | null {
-  const iconClass = 'inline-block w-6 h-6 mr-2';
+  const iconClass = 'inline-block size-10 mr-2';
 
   const icons: Record<string, JSX.Element> = {
     Languages: <CodeBracketIcon className={iconClass} />,

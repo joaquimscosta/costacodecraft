@@ -57,6 +57,7 @@ export default function Hero() {
           <Image
             alt='Volcano of Fogo'
             src={heroImage}
+            placeholder='blur'
             className='aspect-3/2 object-cover lg:aspect-auto lg:size-full'
           />
         </div>
